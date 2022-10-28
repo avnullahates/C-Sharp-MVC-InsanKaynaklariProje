@@ -1,0 +1,52 @@
+﻿@model Advance
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>Add</h1>
+
+<h4>Advance</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Add" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CreationDate" class="control-label"></label>
+                <input asp-for="CreationDate" class="form-control" />
+                <span asp-validation-for="CreationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdvanceAmount" class="control-label"></label>
+                <input asp-for="AdvanceAmount" class="form-control" />
+                <span asp-validation-for="AdvanceAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApprovalDate" class="control-label"></label>
+                <input asp-for="ApprovalDate" class="form-control" />
+                <span asp-validation-for="ApprovalDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonnelID" class="control-label"></label>
+                <select asp-for="PersonnelID" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
