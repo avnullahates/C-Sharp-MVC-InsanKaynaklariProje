@@ -37,7 +37,6 @@ namespace DataAccessLayer.Repositories
 
         public bool Insert(T t)
         {
-
             _dbContext.Add(t);
             return Save() > 0;
         }

@@ -10,5 +10,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface IAdvanceDal : IGENERICDAL<Advance>
     {
+
     }
 }

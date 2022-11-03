@@ -50,8 +50,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("PersonnelID")
-                        .IsUnique();
+                    b.HasIndex("PersonnelID");
 
                     b.ToTable("Advances");
                 });
@@ -62,6 +61,9 @@ namespace DataAccessLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DepartmentName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -77,9 +79,6 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("AdvanceID")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
@@ -169,8 +168,8 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("CoreLayer.Entities.Advance", b =>
                 {
                     b.HasOne("CoreLayer.Entities.Personnel", "Personnel")
-                        .WithOne("Advance")
-                        .HasForeignKey("CoreLayer.Entities.Advance", "PersonnelID")
+                        .WithMany("Advances")
+                        .HasForeignKey("PersonnelID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -180,7 +179,7 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("CoreLayer.Entities.Personnel", b =>
                 {
                     b.HasOne("CoreLayer.Entities.Department", "Department")
-                        .WithMany("Personnel")
+                        .WithMany("Personnels")
                         .HasForeignKey("DepartmentID");
 
                     b.Navigation("Department");
@@ -188,12 +187,12 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("CoreLayer.Entities.Department", b =>
                 {
-                    b.Navigation("Personnel");
+                    b.Navigation("Personnels");
                 });
 
             modelBuilder.Entity("CoreLayer.Entities.Personnel", b =>
                 {
-                    b.Navigation("Advance");
+                    b.Navigation("Advances");
                 });
 #pragma warning restore 612, 618
         }

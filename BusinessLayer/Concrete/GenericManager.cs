@@ -13,7 +13,7 @@ namespace BusinessLayer.Concrete
     public class GenericManager<T> : IGenericService<T> where T : BaseEntity
     {
         private readonly IGENERICDAL<T> _repository;
-        public GenericManager(IGENERICDAL<T> repository )
+        public GenericManager(IGENERICDAL<T> repository)
         {
             _repository = repository;
         }

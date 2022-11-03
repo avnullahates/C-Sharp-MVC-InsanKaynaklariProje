@@ -30,10 +30,11 @@ namespace AspNetCoreApp.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Context>(options => options.UseSqlServer(@"Server=BUSE\MSSQLSERVER2019; Database=IKProjectDB; Uid=sa; Pwd=123;"));
+            services.AddDbContext<Context>(options => options.UseSqlServer("Server = tcp:easyhr21.database.windows.net, 1433; Initial Catalog = IKPROJELOCAL; Persist Security Info = False; User ID = easyhr21; Password =Kanrascal_1; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;"));
             services.AddControllersWithViews();
-            services.AddTransient(typeof(IGENERICDAL<>),typeof(GenericRepository<>));
+            services.AddTransient(typeof(IGENERICDAL<>), typeof(GenericRepository<>));
             services.AddTransient(typeof(IGenericService<>), typeof(GenericManager<>));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,13 +58,13 @@ namespace AspNetCoreApp.Web
             SeedData.Seed(app);
 
             app.UseAuthorization();
-            
+
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Personnel}/{action=Index}");
             });
         }
     }

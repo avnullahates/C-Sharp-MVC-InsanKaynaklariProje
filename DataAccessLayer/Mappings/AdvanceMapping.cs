@@ -13,6 +13,9 @@ namespace DataAccessLayer.Mappings
     {
         public void Configure(EntityTypeBuilder<Advance> builder)
         {
+            builder.HasKey(x => x.ID);
+            builder.Property(x => x.ID).IsRequired();
+
             builder.Property(x => x.AdvanceAmount).IsRequired();
 
             builder.Property(x => x.Description).IsRequired();

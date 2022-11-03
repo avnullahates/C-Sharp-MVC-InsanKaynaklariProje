@@ -33,8 +33,7 @@ namespace CoreLayer.Entities
         // Nav - Prop
         public int? DepartmentID { get; set; }
         public Department Department { get; set; }
-        public int? AdvanceID { get; set; }
-        public Advance Advance { get; set; }
+        public List<Advance> Advances { get; set; }
 
     }
 }

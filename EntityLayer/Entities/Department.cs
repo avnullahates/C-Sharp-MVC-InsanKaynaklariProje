@@ -8,6 +8,7 @@ namespace CoreLayer.Entities
 {
     public class Department : BaseEntity
     {
-        public ICollection<Personnel> Personnel { get; set; }
+        public List<Personnel> Personnels { get; set; }
+        public string DepartmentName { get; set; }
     }
 }

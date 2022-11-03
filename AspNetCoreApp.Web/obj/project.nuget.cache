@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "2oVxV8SNcGuKiAzW+XBw6q7i1TYSEXWPVicVr7ONhVJ8eIT7U8k1Z9J0IJ0XgO+3MeP3LEUSBGPHlQqZB6vbpA==",
+  "dgSpecHash": "wxmCVAN88e5WHBFZSMwJZUkIOv23N4vYJBoQ15w9Yr6FPmRWcPUGWzogbcg9/tqW9S5DrwxHviq/08rdAVeT3Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\pana_\\source\\Workspaces\\InsanKaynaklari\\AspNetCoreApp.Web\\AspNetCoreApp.Web\\AspNetCoreApp.Web.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\pana_\\.nuget\\packages\\fluentvalidation\\11.2.1\\fluentvalidation.11.2.1.nupkg.sha512",
+    "C:\\Users\\pana_\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.2\\fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
+    "C:\\Users\\pana_\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.1\\fluentvalidation.dependencyinjectionextensions.11.2.1.nupkg.sha512",
     "C:\\Users\\pana_\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\pana_\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\pana_\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",

@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Abstract;
 using CoreLayer.Entities;
+using CoreLayer.VM;
 using DataAccessLayer.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,9 +13,12 @@ namespace AspNetCoreApp.Web.Controllers
     public class AdvanceController : Controller
     {
         private readonly IGenericService<Advance> _advanceService;
-        public AdvanceController(IGenericService<Advance> advanceService)
+        private readonly IGenericService<Personnel> _personnelService;
+
+        public AdvanceController(IGenericService<Advance> advanceService, IGenericService<Personnel> personnelService)
         {
             _advanceService = advanceService;
+            _personnelService = personnelService;
         }
         public IActionResult Index()
         {
@@ -23,19 +27,31 @@ namespace AspNetCoreApp.Web.Controllers
         }
 
         [HttpGet]
+        //[HiddenInput(DisplayValue = false)]
         public IActionResult Add()
         {
-            Advance advance = new Advance();
-            return View(advance);
+            PersonnelAdvanceVM vm = new PersonnelAdvanceVM();
+            vm.Advance = new Advance();
+            vm.Personnels = _personnelService.GetListAll();
+            return View(vm);
         }
 
         [HttpPost]
-        public IActionResult Add(Advance advance)
+        public IActionResult Add(PersonnelAdvanceVM vm, int talepEdenPersonelID)
         {
-            ViewBag.personelID = 4;
-            advance.Approval = CoreLayer.Enums.Approval.OnayBekliyor;
-            advance.Currency = CoreLayer.Enums.Currency.TL;
-            var newAdvance = _advanceService.Insert(advance);
+            Advance newAdvance = new Advance()
+            {
+                AdvanceAmount = vm.Advance.AdvanceAmount,
+                CreationDate = vm.Advance.CreationDate,
+                Approval = vm.Advance.Approval,
+                ApprovalDate = vm.Advance.ApprovalDate,
+                Currency = vm.Advance.Currency,
+                Description = vm.Advance.Description,
+
+                PersonnelID = talepEdenPersonelID
+
+            };
+            _advanceService.Insert(newAdvance);
             return RedirectToAction("Index");
         }
     }

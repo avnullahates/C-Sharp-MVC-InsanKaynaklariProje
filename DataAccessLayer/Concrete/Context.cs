@@ -16,9 +16,9 @@ namespace DataAccessLayer.Concrete
 
         } 
         
-        public DbSet<Advance> Advances { get; set; }
-        public DbSet<Personnel> Personnels { get; set; }
-        public DbSet<Department> Departments { get; set; }
+        public virtual DbSet<Advance> Advances { get; set; }
+        public virtual DbSet<Personnel> Personnels { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

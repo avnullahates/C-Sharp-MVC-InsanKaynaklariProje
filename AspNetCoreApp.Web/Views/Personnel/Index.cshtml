@@ -1,4 +1,8 @@
-﻿@model Personnel
+﻿@model CoreLayer.Entities.Personnel
+@{ int age = (int)DateTime.Now.Year - Model.BirthDate.Year;}
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,18 +20,44 @@
     @*<link rel="stylesheet" href="~/argon/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">*@
     <!-- Argon CSS -->
     <link rel="stylesheet" href="~/argon/assets/css/argon.css?v=1.2.0" type="text/css">
+    <title>IK Application</title>
 </head>
 
 <body>
- 
+
     <!-- Main content -->
     <div class="main-content" id="panel">
         <!-- Topnav -->
-        <nav class="navbar navbar-top navbar-expand navbar-dark bg-default border-bottom">
+        <nav class="navbar navbar-top navbar-expand navbar-dark bg-gradient-teal border-bottom">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Search form -->
-                    <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
+                    <div>
+                        <a href="/Personnel/Index"><img src="~/images/icons8-human-resources-64.png" alt="Alternate Text" /></a>
+                    </div>
+                    <ul class="navbar-nav align-items-center ml-2">
+                        <li class="nav-item dropdown ">
+                            <a href="/Advance/Index" class="btn btn-m text-dark mr-1 ml-4">Avansları Listele</a>
+                            <a href="/Advance/Add" class="btn btn-m text-dark mr-1 ml-1 ">Avans Ekle</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav align-items-center ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @*<div class="media align-items-center mr-1">
+                                        <span class="avatar avatar-sm rounded-circle">
+                                            <img alt="Image placeholder" src="~/images/man_default.png">
+                                        </span>
+                                        <div class="media-body  ml-auto  d-none d-lg-block">
+                                            <span class="mb-0 ml-2 text-sm  font-weight-bold">@Model.Name @Model.MiddleName @Model.Surname @Model.SecondSurname</span>
+                                        </div>
+
+                                    </div>*@
+                            </a>
+
+                        </li>
+                    </ul>
+                    <form class="navbar-search navbar-search-light form-inline ml-4" id="navbar-search-main">
                         <div class="form-group mb-0">
                             <div class="input-group input-group-alternative input-group-merge">
                                 <div class="input-group-prepend">
@@ -40,120 +70,98 @@
                             <span aria-hidden="true">×</span>
                         </button>
                     </form>
-                    <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="media align-items-center">
-                                    <span class="avatar avatar-sm rounded-circle">
-                                        <img alt="Image placeholder" src="~/argon/assets/img/theme/team-4.jpg">
-                                    </span>
-                                    <div class="media-body  ml-2  d-none d-lg-block">
-                                        <span class="mb-0 text-sm  font-weight-bold">@Model.Name @Model.Surname</span>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu  dropdown-menu-right ">
-                                <div class="dropdown-header noti-title">
-                                    <h6 class="text-overflow m-0">Hoşgeldiniz !</h6>
-                                </div>
-                                <a href="#!" class="dropdown-item">
-                                    <i class="ni ni-single-02"></i>
-                                    <span>My profile</span>
-                                </a>
-                                <a href="#!" class="dropdown-item">
-                                    <i class="ni ni-settings-gear-65"></i>
-                                    <span>Settings</span>
-                                </a>
-                                <a href="#!" class="dropdown-item">
-                                    <i class="ni ni-calendar-grid-58"></i>
-                                    <span>Activity</span>
-                                </a>
-                                <a href="#!" class="dropdown-item">
-                                    <i class="ni ni-support-16"></i>
-                                    <span>Support</span>
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a href="#!" class="dropdown-item">
-                                    <i class="ni ni-user-run"></i>
-                                    <span>Logout</span>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
+
+
                 </div>
             </div>
         </nav>
         <!-- Header -->
         <!-- Header -->
-        <div class="header pb-6 d-flex align-items-center" style="min-height: 500px; background-image: url(~/argon/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+        <div class="header d-flex align-items-center" style="height:50px; background-image: url(~/argon/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
             <!-- Mask -->
-            <span class="mask bg-gradient-default opacity-8"></span>
+            @*<span class="mask bg-gradient-gray opacity-8"></span>*@
             <!-- Header container -->
-            <div class="container-fluid d-flex align-items-center">
-                <div class="row">
-                    <div class="col-lg-7 col-md-10">
-                        <h1 class="display-2 text-white">Merhaba Jesse</h1>
-                        <p class="text-white mt-0 mb-5">Burası senin profil sayfan. Kişisel bilgilerini bu sayfada görüntüleyebilirsin:)</p>
-                    </div>
-                </div>
+            <div class="container-fluid align-items-center ">
+                <!--<div class="container mt-0 col-lg-12 text-center">
+                    <h1 class="text-dark mt-0">Merhaba @Model.Name @Model.MiddleName @Model.Surname @Model.SecondSurname</h1>-->
+                @*<p class="text-dark mt-0 mb-5">Burası senin profil sayfan. Kişisel bilgilerini bu sayfada görüntüleyebilirsin:)</p>*@
+                <!--</div>-->
+                @*<div class="container">
+                        <div class="col-lg-12 text-center">
+                            <h1 class="text-dark mt-0">Merhaba @Model.Name @Model.MiddleName @Model.Surname @Model.SecondSurname</h1>
+                            <p class="text-dark mt-0 mb-5">Burası senin profil sayfan. Kişisel bilgilerini bu sayfada görüntüleyebilirsin:)</p>
+                        </div>
+                    </div>*@
             </div>
         </div>
         <!-- Page content -->
-        <div class="container-fluid mt--6">
+        <div class="container-fluid mt-auto">
             <div class="row">
-                <div class="col-xl-12 order-xl-2">
-                    <div class="card card-profile">
+                <div class="col-xl-4 order-xl-2" style="margin: auto;">
+                    <div class="card card-profile" style="background-color:lightpink;">
                         @*<img src="~/argon/assets/img/theme/img-1-1000x600.jpg" alt="Image placeholder" class="card-img-top">*@
                         <div class="row justify-content-center">
+
                             <div class="col-lg-3 order-lg-2">
-                                <div class="card-profile-image">
+                                <div class="card-profile-image ml-auto">
                                     <a href="#">
-                                        <img src="~/argon/assets/img/theme/team-4.jpg" class="rounded-circle">
+                                        <img src="~/images/man_default.png" class="rounded-circle">
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4" style="background-color:lightpink;">
                             <div class="d-flex justify-content-between">
-                                <a href="#" class="btn btn-sm btn-info  mr-4 ">Connect</a>
-                                <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+                                <a href="/Advance/Index" class="btn btn-m btn-info  mr-4 ml-1">Düzenle</a>
+                                @*<a href="/Advance/Add" class="btn btn-m btn-primary  mr-1 ml-4 ">Avans Ekle</a>*@
+                                @*<a href="#" class="btn btn-sm btn-default float-right">Bilgilerim</a>*@
                             </div>
                         </div>
-                        <div class="card-body pt-0">
+                        <div class="card-body pt-0 mt-2">
                             <div class="row">
-                                <div class="col">
-                                    <div class="card-profile-stats d-flex justify-content-center">
-                                        <div>
-                                            <span class="heading">22</span>
-                                            <span class="description">Friends</span>
-                                        </div>
-                                        <div>
-                                            <span class="heading">10</span>
-                                            <span class="description">Photos</span>
-                                        </div>
-                                        <div>
-                                            <span class="heading">89</span>
-                                            <span class="description">Comments</span>
+                                <div class="col-lg-12">
+                                    <div class="card-profile-stats mr-auto ml-auto">
+                                        <div class="mb-0">
+                                            <span class="heading text-default mb-2">Ad Soyad</span>
+                                            <span class="text-md-center text-white">@Model.Name @Model.MiddleName @Model.Surname @Model.SecondSurname</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-center">
-                                <h5 class="h3">
-                                    Jessica Jones<span class="font-weight-light">, 27</span>
-                                </h5>
-                                <div class="h5 font-weight-300">
-                                    <i class="ni location_pin mr-2"></i>Bucharest, Romania
-                                </div>
-                                <div class="h5 mt-4">
-                                    <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
-                                </div>
-                                <div>
-                                    <i class="ni education_hat mr-2"></i>University of Computer Science
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card-profile-stats mr-auto ml-auto">
+                                        <div class="mt-0 mb-0">
+                                            <span class="heading text-default mb-2">Adres</span>
+                                            <span class="text-md-center text-white">@Model.Address</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card-profile-stats d-flex justify-content-center mr-auto ml-auto">
+                                        <div>
+                                            <span class="heading text-default mb-2">İşe Giriş Tarihi</span>
+                                            <span class="text-md-center text-white">@Model.HireDate.ToShortDateString()</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card-profile-stats d-flex justify-content-center mr-auto ml-auto">
+                                        <div class="">
+                                            <span class="heading text-default mb-2">Departman</span>
+                                            <span class="text-md-center text-white"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

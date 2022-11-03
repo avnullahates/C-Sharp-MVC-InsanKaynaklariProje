@@ -1,52 +1,194 @@
-﻿@model Advance
+﻿@using CoreLayer.Enums
+@model CoreLayer.VM.PersonnelAdvanceVM
+
 
 @{
     ViewData["Title"] = "Add";
 }
+<body>
 
-<h1>Add</h1>
 
-<h4>Advance</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Add" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CreationDate" class="control-label"></label>
-                <input asp-for="CreationDate" class="form-control" />
-                <span asp-validation-for="CreationDate" class="text-danger"></span>
+    <!-- Topnav -->
+    <nav class="navbar navbar-top navbar-expand navbar-dark bg-default border-bottom">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Search form -->
+                <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
+                    <div class="form-group mb-0">
+                        <div class="input-group input-group-alternative input-group-merge">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Search" type="text">
+                        </div>
+                    </div>
+                    <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </form>
+                <div class="d-flex justify-content-between align-self-auto">
+                    <a href="/Personnel/Index" class="btn btn-m text-light mr-1 ml-4">Ana Sayfam</a>
+                    <a href="/Advance/Index" class="btn btn-m text-light mr-1 ml-4">Avansları Listele</a>
+                </div>
+                <ul class="navbar-nav align-items-center  ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link pr-0" href="/Personnel/Index" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="media align-items-center mr-1">
+                                <span class="avatar avatar-sm rounded-circle">
+                                    <img alt="Image placeholder" src="~/images/man_default.png">
+                                </span>
+                                <div class="media-body  ml-2  d-none d-lg-block">
+                                    @*  <span class="mb-0 text-sm  font-weight-bold">@Model.Name @Model.Surname</span>*@
+                                </div>
+
+                            </div>
+                        </a>
+
+
+                    </li>
+                </ul>
             </div>
-            <div class="form-group">
-                <label asp-for="AdvanceAmount" class="control-label"></label>
-                <input asp-for="AdvanceAmount" class="form-control" />
-                <span asp-validation-for="AdvanceAmount" class="text-danger"></span>
+        </div>
+    </nav>
+    <!-- Header -->
+    <!-- Header -->
+    <div class="header d-flex align-items-center" style="min-height: 100px; background-image: url(~/argon/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+        <!-- Header container -->
+        <div class="container-fluid d-flex align-items-center ">
+            <div class="container">
+                <div class="col-lg-7 col-md-10">
+                    @*<h1 class="display-2 text-white">Merhaba @Model.Name @Model.Surname</h1>*@
+                    <p class="text-white mt-0 mb-5"></p>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApprovalDate" class="control-label"></label>
-                <input asp-for="ApprovalDate" class="form-control" />
-                <span asp-validation-for="ApprovalDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PersonnelID" class="control-label"></label>
-                <select asp-for="PersonnelID" class="form-control"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+    <!-- Page content -->
+    <div class="main-content" id="panel">
+        <div class="container">
+            <form asp-action="Add" asp-controller="Advance" method="post">
+                <div class="container">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h3 class="mb-0"></h3>
+                            </div>
+                            <div class="col-4 text-right">
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+                                <button type="submit" value="Avans Ekle" class="btn btn-m btn-success">Avans Ekle</button>
+                            </div>
+                        </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+                        <div class="card-body">
+
+                            <h4 class="heading-small text-muted mb-4">Avans Bilgileri</h4>
+
+                            <div class="pl-lg-4">
+                                <div class="row">
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" asp-for="@Model.Advance.CreationDate"></label>
+                                            <input asp-for="@Model.Advance.CreationDate" class="form-control" />
+                                            <span asp-validation-for="@Model.Advance.CreationDate" class="text-danger"></span>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="pl-lg-4">
+                                <div class="row">
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" asp-for="@Model.Advance.AdvanceAmount"></label>
+                                            <input asp-for="@Model.Advance.AdvanceAmount" class="form-control" />
+                                            <span asp-validation-for="@Model.Advance.AdvanceAmount" class="text-danger"></span>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="pl-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" asp-for="@Model.Advance.Description"> </label>
+                                    <textarea asp-for="@Model.Advance.Description" rows="4" class="form-control" placeholder="En az 30 karakterlik açıklama yazınız."></textarea>
+                                </div>
+                            </div>
+
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" asp-for="@Model.Advance.Approval"> </label>
+                                            <select class="form-control" asp-for="@Model.Advance.Approval" asp-items="@Html.GetEnumSelectList<Approval>()">
+                                                <option>Lutfen Seciniz</option>
+                                            </select>
+                                            <span asp-validation-for="@Model.Advance.Approval" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="pl-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" asp-for="@Model.Advance.Currency"> </label>
+                                    <select class="form-control" asp-for="@Model.Advance.Currency" asp-items="@Html.GetEnumSelectList<Currency>()">
+                                        <option>Lutfen Seciniz</option>
+                                    </select>
+                                    <span asp-validation-for="@Model.Advance.Currency" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@Model.Advance.PersonnelID" class="control-label"></label>
+                                    <select class="form-control" name="talepEdenPersonelID">
+                                        <option>Lütfen Seçiniz..</option>
+                                        @foreach (Personnel item in Model.Personnels)
+                                        {
+                                            <option name="talepEdenPersonelID" value="@item.ID">@item.Name</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="@Model.Advance.PersonnelID" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="pl-lg-4">
+                                <div class="row">
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" asp-for="@Model.Advance.ApprovalDate"></label>
+                                            <input asp-for="@Model.Advance.ApprovalDate" class="form-control" />
+                                            <span asp-validation-for="@Model.Advance.ApprovalDate" class="text-danger"></span>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <script src="~/argon/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="~/argon/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/argon/assets/vendor/js-cookie/js.cookie.js"></script>
+    <script src="~/argon/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="~/argon/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+    <!-- Argon JS -->
+    <script src="~/argon/assets/js/argon.js?v=1.2.0"></script>
+</body>
+
+
+@**@

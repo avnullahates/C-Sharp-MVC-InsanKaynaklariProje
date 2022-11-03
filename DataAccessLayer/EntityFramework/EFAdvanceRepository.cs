@@ -13,8 +13,14 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EFAdvanceRepository : GenericRepository<Advance>, IAdvanceDal
     {
+        private readonly Context _dbContext;
+
         public EFAdvanceRepository(Context dbContext) : base(dbContext)
         {
+            _dbContext = dbContext;
         }
+
+
+        
     }
 }
