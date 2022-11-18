@@ -1,0 +1,203 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<Personnel>
+
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Message
+    </div>
+}
+    
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+    <meta name="author" content="Creative Tim">
+    <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+    <!-- Favicon -->
+    <link rel="icon" href="~/argon/assets/img/brand/favicon.png" type="image/png">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <!-- Icons -->
+    <link rel="stylesheet" href="~/argon/assets/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="~/argon/assets/vendor/@@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <!-- Argon CSS -->
+    <link rel="stylesheet" href="~/argon/assets/css/argon.css?v=1.2.0" type="text/css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body>
+
+    <!-- Main content -->
+    <div class="main-content" id="panel">
+        <!-- Topnav -->
+        <!-- Header -->
+        <!-- Header -->
+        <div class="header pb-0 d-flex align-items-center" style="min-height: 100px; background-image: url(~/argon/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+            <!-- Mask -->
+            <span class="mask bg-gradient-default opacity-8"></span>
+            <!-- Header container -->
+            <div class="container-fluid align-items-center ">
+                <div class="container">
+                    <div class="col-lg-10 col-md-offset-1">
+                        @*<h1 class="display-2 text-white">Merhaba @Model.Name @Model.Surname</h1>*@
+                        <p class="text-white text-center mt-0 mb-1"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page content -->
+        <div class="container-fluid mt--6">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <!-- Card header -->
+                        <div class="card-header border-0">
+                            <div class="row">
+                                <h3 class="mb-2 ml-3"> Personel Listeleme Sayfası</h3>
+                                <a asp-controller="Manager" asp-action="CreatePersonnel" class="btn btn-success ml-auto mr-2"> Personel Ekle</a>
+                            </div>
+
+                            <form asp-controller="Manager" asp-action="Index" method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group border-0">
+                                            <label class="form-label" name="name"> İsim </label>
+                                            <input class="form-control" name="name" placeholder="arama yapmak için yazınız...">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group border-0">
+                                            <label class="form-label" name="surname"> Soyisim </label>
+                                            <input class="form-control" name="surname" placeholder="arama yapmak için yazınız...">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-m btn-warning ">Filtrele</button>
+
+                                </div>
+
+                            </form>
+
+
+                        </div>
+                        <div class="row">
+                        </div>
+                        <div class="row justify-content-end">
+                            <div class="col-md-4">
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col" class="sort" data-sort="name">Ad Soyad </th>
+                                        <th scope="col" class="sort" data-sort="name">Departman</th>
+                                        <th scope="col" class="sort" data-sort="budget">Mail Adresi</th>
+
+                                        <th scope="col" class="sort" data-sort="status">Doğum Tarihi</th>
+
+
+
+                                    </tr>
+                                </thead>
+                                <tbody class="list">
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <th scope="row">
+                                                <div class="media align-items-center">
+
+                                                    <div class="media-body">
+                                                        <span class="name mb-0 text-sm">
+                                                            @item.Name
+                                                            @if (item.MiddleName != null)
+                                                            {
+                                                                @item.MiddleName
+                                                            }&nbsp;@item.Surname
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </th>
+
+                                            <th scope="row">
+                                                <div class="media align-items-center">
+
+                                                    <div class="media-body">
+                                                        <span class="name mb-0 text-sm">
+                                                            @if (item.Department != null)
+                                                            {
+                                                                @item.Department.DepartmentName
+                                                            }
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <th scope="row">
+                                                <div class="media align-items-center">
+
+                                                    <div class="media-body">
+                                                        <span class="name mb-0 text-sm"> @item.Email </span>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <th scope="row">
+                                                <div class="media align-items-center">
+
+                                                    <div class="media-body">
+                                                        <span class="name mb-0 text-sm"> @item.BirthDate.ToShortDateString()</span>
+                                                    </div>
+                                                </div>
+                                            </th>
+
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+
+
+                        </div>
+                    </div><div class="pagination justify-content-center ">
+
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new X.PagedList.Web.Common.PagedListRenderOptions
+                    {
+                       LiElementClasses = new List<string> { "page-link" }
+
+                    })
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+    <script src="~/argon/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="~/argon/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/argon/assets/vendor/js-cookie/js.cookie.js"></script>
+    <script src="~/argon/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="~/argon/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+    <!-- Argon JS -->
+    <script src="~/argon/assets/js/argon.js?v=1.2.0"></script>
+</body>
+
+
+
+

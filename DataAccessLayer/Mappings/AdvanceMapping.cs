@@ -20,7 +20,9 @@ namespace DataAccessLayer.Mappings
 
             builder.Property(x => x.Description).IsRequired();
 
-            builder.Property(x => x.ApprovalDate).IsRequired();
+            
+
+            builder.HasOne(a => a.Personnel).WithMany(a => a.Advances).HasForeignKey(a => a.PersonnelID);
 
         }
     }

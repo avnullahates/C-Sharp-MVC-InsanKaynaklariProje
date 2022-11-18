@@ -1,12 +1,15 @@
 using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
+using CoreLayer.Entities;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
 using DataAccessLayer.Repositories;
 using DataAccessLayer.SeedData;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,10 +33,37 @@ namespace AspNetCoreApp.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Context>(options => options.UseSqlServer("Server = tcp:easyhr21.database.windows.net, 1433; Initial Catalog = IKPROJELOCAL; Persist Security Info = False; User ID = easyhr21; Password =Kanrascal_1; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;"));
-            services.AddControllersWithViews();
+            services.AddDbContext<Context>(options => options.UseSqlServer("Server = tcp:easyhr21.database.windows.net, 1433; Initial Catalog = IKPROJELOCAL1; Persist Security Info = False; User ID = easyhr21; Password =Kanrascal_1; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;"));
+
+
+            services.AddIdentity<Personnel,IdentityRole>(x =>
+                {
+                    x.Password.RequireUppercase = false;
+                    x.Password.RequireNonAlphanumeric = false;
+                })
+                .AddEntityFrameworkStores<Context>();
+
+            
+            services.AddAuthentication();
+
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddTransient(typeof(IGENERICDAL<>), typeof(GenericRepository<>));
             services.AddTransient(typeof(IGenericService<>), typeof(GenericManager<>));
+
+            services.AddTransient<IExpenseDal, EFExpenseRepository>();
+            services.AddTransient<IExpenseService, ExpenseManager>();
+
+            services.AddTransient<IAdvanceDal, EFAdvanceRepository>();
+            services.AddTransient<IAdvanceService, AdvanceManager>();
+
+            services.AddTransient<IPermitDal, EFPermitRepository>();
+            services.AddTransient<IPermitService, PermitManager>();
+
+            services.AddTransient<IPersonnelDal, EFPersonnelRepository>();
+            services.AddTransient<IPersonnelService, PersonnelManager>();
+
+
+
 
         }
 
@@ -55,8 +85,9 @@ namespace AspNetCoreApp.Web
 
             app.UseRouting();
 
-            SeedData.Seed(app);
-
+            //SeedData.Seed(app);
+            
+            app.UseAuthentication();
             app.UseAuthorization();
 
 
@@ -64,8 +95,12 @@ namespace AspNetCoreApp.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Personnel}/{action=Index}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
+
+                endpoints.MapControllers();
             });
+
+            
         }
     }
 }

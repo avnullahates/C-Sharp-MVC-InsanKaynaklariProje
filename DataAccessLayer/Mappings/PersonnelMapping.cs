@@ -13,8 +13,6 @@ namespace DataAccessLayer.Mappings
     {
         public void Configure(EntityTypeBuilder<Personnel> builder)
         {
-            builder.HasKey(x => x.ID);
-            builder.Property(x => x.ID).IsRequired();
 
             builder.Property(x => x.Name).IsUnicode(true).HasMaxLength(50).IsRequired();
 
@@ -42,9 +40,12 @@ namespace DataAccessLayer.Mappings
 
             builder.Property(x => x.Job).IsUnicode(true).HasMaxLength(100).IsRequired();
 
-            builder.Property(x => x.Mail).HasMaxLength(100).IsRequired();
+
+            //builder.Property(x => x.Password).IsRequired();
 
             builder.Property(x => x.Gender).IsRequired();
+
+            builder.HasOne(a => a.Department).WithMany(a => a.Personnels).HasForeignKey(a => a.DepartmentID);
 
         }
     }

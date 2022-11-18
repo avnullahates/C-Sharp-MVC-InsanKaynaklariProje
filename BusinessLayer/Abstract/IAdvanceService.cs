@@ -9,7 +9,7 @@ namespace BusinessLayer.Abstract
 {
     public interface IAdvanceService
     {
-        List<Advance> GetListAllAdvance();
+        List<Advance> GetListAllAdvance(string id);
 
     }
 }

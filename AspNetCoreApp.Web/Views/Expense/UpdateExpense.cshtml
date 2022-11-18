@@ -1,0 +1,86 @@
+﻿@model ExpenseDTO
+
+@{ ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="main-content" id="panel">
+    <!-- Topnav -->
+    <!-- Header -->
+    <!-- Header -->
+    <div class="header pb-0 d-flex align-items-center" style="min-height: 100px; background-image: url(~/argon/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+        <!-- Header container -->
+        <div class="container-fluid align-items-center ">
+            <div class="container">
+                <div class="col-lg-10 col-md-offset-1">
+                    @*<h1 class="display-2 text-white">Merhaba @Model.Name @Model.Surname</h1>*@
+                    <p class="text-white text-center mt-0 mb-1"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid mt--6">
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-danger" role="alert">
+    @ViewBag.Message
+                </div>}
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <!-- Card header -->
+                    <div class="card-header border-0">
+                        <h3 class="mb-0"> Harcama Düzenle Sayfası </h3>
+                    </div>
+                    <!-- Light table -->
+                    <div class="card-body border-0">
+
+                        <div class="container-fluid mt-1 mb-1">
+
+                            <form asp-controller="Expense" asp-action="UpdateExpense" enctype="multipart/form-data" class="">
+
+                                <div class="col-12">
+                                    <label asp-for="ExpenseAmount" class="form-label">Gider Miktarı</label>
+                                    <input type="number" asp-for="ExpenseAmount" class="form-control"  oninvalid="this.setCustomValidity('Lütfen bir sayı giriniz')" oninput="this.setCustomValidity('')">
+                                    <span asp-validation-for="ExpenseAmount" class="text-danger"></span>
+                                </div><br />
+                                <div class="col-12">
+                                    <label asp-for="Description" class="form-label">Açıklama</label>
+                                    <textarea asp-for="Description" rows="5" cols="50" class="form-control"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div><br />
+                                <div class="col-12">
+                                    <label asp-for="TypeOfExpenses" class="form-label">Gider Türü</label>
+                                    <select asp-for="TypeOfExpenses" class="form-control" asp-items="@Html.GetEnumSelectList<TypeOfExpenses>();"></select>
+                                    <span asp-validation-for="TypeOfExpenses" class="text-danger"></span>
+                                </div><br />
+                                <div class="col-12">
+                                    <label asp-for="Currency" class="form-label">Para Birimi</label>
+                                    <select asp-for="Currency" class="form-control" asp-items="@Html.GetEnumSelectList<Currency>();"></select>
+                                    <span asp-validation-for="Currency" class="text-danger"></span>
+                                </div><br />
+                                <div class="col-12">
+                                    <label asp-for="Invoce" class="form-label">Harcama için dosyalar yükleyiniz</label>
+                                    <input asp-for="Invoce" class="form-control" type="file" id="formFileMultiple" multiple>
+                                    <span asp-validation-for="Invoce" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="col-12 mt-2">
+                                    <input type="hidden" asp-for="ID" />
+                                    <button type="submit" value="Update" class="btn btn-primary mt-2">Düzenle</button>
+                                    <a asp-action="Index" class="btn btn-link mt-2 ml-2">Harcama Listesine Dön</a>
+                                </div>
+                            </form>
+                            @section Scripts {
+                                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

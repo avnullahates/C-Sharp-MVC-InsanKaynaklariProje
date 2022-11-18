@@ -1,0 +1,91 @@
+﻿@model PermitDTO
+
+@{ ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="main-content" id="panel">
+    <!-- Topnav -->
+    <!-- Header -->
+    <!-- Header -->
+    <div class="header pb-0 d-flex align-items-center" style="min-height: 100px; background-image: url(~/argon/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+        <!-- Header container -->
+        <div class="container-fluid align-items-center ">
+            <div class="container">
+                <div class="col-lg-10 col-md-offset-1">
+                    @*<h1 class="display-2 text-white">Merhaba @Model.Name @Model.Surname</h1>*@
+                    <p class="text-white text-center mt-0 mb-1"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid mt--6">
+        @if (ViewBag.Message != null)
+        {
+<div class="alert alert-danger" role="alert">
+    @ViewBag.Message
+</div>}
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <!-- Card header -->
+                    <div class="card-header border-0">
+                        <h3 class="mb-0"> İzin Düzenle Sayfası </h3>
+                    </div>
+                    <!-- Light table -->
+                    <div class="table-responsive">
+
+                        <div class="container">
+
+                            <form asp-controller="Permit" asp-action="Edit" enctype="multipart/form-data" method="post" class="row g-3">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <div class=" col-12">
+                                    <label asp-for="StartDate" class="form-label">Başlangıç tarihi</label>
+                                    <input asp-for="StartDate" class="form-control" value="@DateTime.Today.ToString()" />
+                                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                                </div><br />
+                                <div class=" col-12">
+                                    <label asp-for="EndDate" class="form-label">Bitiş Tarihi</label>
+                                    <input asp-for="EndDate" class="form-control" value="@DateTime.Today.ToString()" />
+                                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                                </div><br />
+                                <div class=" col-12">
+                                    <label asp-for="Description" class="form-label">Açıklama</label>
+                                    <textarea asp-for="Description" cols="50" class="form-control" id="EndDate"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+
+
+                                <div class="col-12 mb-2 mt-2">
+                                    <input type="hidden" asp-for="ID" />
+                                    <button type="submit" value="Update" class="btn btn-primary">Düzenle</button>
+                                    <a asp-action="Index" class="btn btn-link">İzin Listesine Dön</a>
+                                </div>
+                            </form>
+                            @section Scripts {
+                                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/argon/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="~/argon/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/argon/assets/vendor/js-cookie/js.cookie.js"></script>
+<script src="~/argon/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script src="~/argon/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+<!-- Argon JS -->
+<script src="~/argon/assets/js/argon.js?v=1.2.0"></script>
+

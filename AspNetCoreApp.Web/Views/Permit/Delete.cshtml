@@ -1,0 +1,102 @@
+﻿@model CoreLayer.Entities.Permit
+
+@{ ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+
+<div class="main-content" id="panel">
+    <!-- Topnav -->
+    <!-- Header -->
+    <!-- Header -->
+    <div class="header pb-0 d-flex align-items-center" style="min-height: 100px; background-image: url(~/argon/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+        <!-- Header container -->
+        <div class="container-fluid align-items-center ">
+            <div class="container">
+                <div class="col-lg-10 col-md-offset-1">
+                    @*<h1 class="display-2 text-white">Merhaba @Model.Name @Model.Surname</h1>*@
+                    <p class="text-white text-center mt-0 mb-1"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt--6">
+
+        <div>
+            <div class="row">
+                <div class="col">
+                    <hr />
+                    <div class="card">
+                        <h3>Silmek istediğinize emin misiniz?</h3>
+                        @if (ViewBag.ErrorMessage != null)
+                        {
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.ErrorMessage
+            </div>}
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">&nbsp;&nbsp; İzin Türü</div>
+                            <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.PermitTypes)</div>
+                        </div>
+                        <br />
+                        @*<div class="row">
+                                <div class="col-lg-3 col-md-4 label ">&nbsp;&nbsp; @Html.DisplayNameFor(model => model.TotalDayOfPermissionType)</div>
+                                <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.TotalDayOfPermissionType)</div>
+                            </div>*@
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">&nbsp;&nbsp; İzin Oluşturma Tarihi</div>
+                            <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.RequestDate)</div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label">&nbsp;&nbsp; Başlangıç Tarihi</div>
+                            <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.StartDate)</div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label">&nbsp;&nbsp; Bitiş Tarihi</div>
+                            <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.EndDate)</div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label">&nbsp;&nbsp; İzin Günü</div>
+                            <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.PermitDay)</div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label">&nbsp;&nbsp; Açıklama</div>
+                            <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.Description)</div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+
+                        <form asp-action="DeleteApprow" asp-route-id="@Model.ID">
+                            &nbsp;&nbsp;
+                            <input type="hidden" asp-for="ID" />
+                            <input type="submit" value="Sil" class="btn btn-danger" /> &nbsp;&nbsp;
+                            <a asp-controller="Permit" asp-action="Index" class="btn btn-link ml-2">İzin Listesine Dön</a>
+                        </form>
+                        @section Scripts {
+                            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                        }
+                        <br /><br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/argon/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="~/argon/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/argon/assets/vendor/js-cookie/js.cookie.js"></script>
+<script src="~/argon/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script src="~/argon/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+<!-- Argon JS -->
+<script src="~/argon/assets/js/argon.js?v=1.2.0"></script>
+

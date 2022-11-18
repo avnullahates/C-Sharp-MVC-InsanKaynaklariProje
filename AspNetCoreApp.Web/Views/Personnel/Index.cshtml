@@ -1,6 +1,5 @@
 ﻿@model CoreLayer.Entities.Personnel
-@{ int age = (int)DateTime.Now.Year - Model.BirthDate.Year;}
-
+@*@{ int age = (int)DateTime.Now.Year - Model.BirthDate.Year;}*@
 
 
 <!DOCTYPE html>
@@ -10,80 +9,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
-    <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+    <title>IK Project</title>
     <!-- Favicon -->
     <link rel="icon" href="~/argon/assets/img/brand/favicon.png" type="image/png">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
     <link rel="stylesheet" href="~/argon/assets/vendor/nucleo/css/nucleo.css" type="text/css">
-    @*<link rel="stylesheet" href="~/argon/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">*@
+    <link rel="stylesheet" href="~/argon/assets/vendor/@@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
     <!-- Argon CSS -->
     <link rel="stylesheet" href="~/argon/assets/css/argon.css?v=1.2.0" type="text/css">
     <title>IK Application</title>
 </head>
 
-<body>
-
+<body style="background-color: #E2E2E2 ">
     <!-- Main content -->
     <div class="main-content" id="panel">
-        <!-- Topnav -->
-        <nav class="navbar navbar-top navbar-expand navbar-dark bg-gradient-teal border-bottom">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Search form -->
-                    <div>
-                        <a href="/Personnel/Index"><img src="~/images/icons8-human-resources-64.png" alt="Alternate Text" /></a>
-                    </div>
-                    <ul class="navbar-nav align-items-center ml-2">
-                        <li class="nav-item dropdown ">
-                            <a href="/Advance/Index" class="btn btn-m text-dark mr-1 ml-4">Avansları Listele</a>
-                            <a href="/Advance/Add" class="btn btn-m text-dark mr-1 ml-1 ">Avans Ekle</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav align-items-center ml-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @*<div class="media align-items-center mr-1">
-                                        <span class="avatar avatar-sm rounded-circle">
-                                            <img alt="Image placeholder" src="~/images/man_default.png">
-                                        </span>
-                                        <div class="media-body  ml-auto  d-none d-lg-block">
-                                            <span class="mb-0 ml-2 text-sm  font-weight-bold">@Model.Name @Model.MiddleName @Model.Surname @Model.SecondSurname</span>
-                                        </div>
 
-                                    </div>*@
-                            </a>
-
-                        </li>
-                    </ul>
-                    <form class="navbar-search navbar-search-light form-inline ml-4" id="navbar-search-main">
-                        <div class="form-group mb-0">
-                            <div class="input-group input-group-alternative input-group-merge">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                </div>
-                                <input class="form-control" placeholder="Search" type="text">
-                            </div>
-                        </div>
-                        <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </form>
-
-
-                </div>
-            </div>
-        </nav>
-        <!-- Header -->
-        <!-- Header -->
         <div class="header d-flex align-items-center" style="height:50px; background-image: url(~/argon/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
             <!-- Mask -->
             @*<span class="mask bg-gradient-gray opacity-8"></span>*@
             <!-- Header container -->
             <div class="container-fluid align-items-center ">
+
                 <!--<div class="container mt-0 col-lg-12 text-center">
-                    <h1 class="text-dark mt-0">Merhaba @Model.Name @Model.MiddleName @Model.Surname @Model.SecondSurname</h1>-->
+                    <h1 class="text-dark mt-0">Merhaba</h1>-->
                 @*<p class="text-dark mt-0 mb-5">Burası senin profil sayfan. Kişisel bilgilerini bu sayfada görüntüleyebilirsin:)</p>*@
                 <!--</div>-->
                 @*<div class="container">
@@ -98,21 +48,26 @@
         <div class="container-fluid mt-auto">
             <div class="row">
                 <div class="col-xl-4 order-xl-2" style="margin: auto;">
-                    <div class="card card-profile" style="background-color:lightpink;">
+                    <div class="card card-profile" style="background-color: #7FBCD2;">
                         @*<img src="~/argon/assets/img/theme/img-1-1000x600.jpg" alt="Image placeholder" class="card-img-top">*@
                         <div class="row justify-content-center">
 
                             <div class="col-lg-3 order-lg-2">
                                 <div class="card-profile-image ml-auto">
-                                    <a href="#">
-                                        <img src="~/images/man_default.png" class="rounded-circle">
-                                    </a>
+                                    @if (Model.ImagePath != null)
+                                    {
+                                        <img class="rounded-circle" src="~/images/@Model.ImagePath">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/images/6ff8ce19-483d-4986-ab24-84edea0529a6.jpg" class="rounded-circle">
+                                    }
                                 </div>
                             </div>
                         </div>
-                        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4" style="background-color:lightpink;">
+                        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4" style="background-color:#7FBCD2;">
                             <div class="d-flex justify-content-between">
-                                <a href="/Advance/Index" class="btn btn-m btn-info  mr-4 ml-1">Düzenle</a>
+                                <a asp-controller="Personnel" asp-action="Update" asp-route-id="@Model.Id" class="btn btn-m btn-warning mr-4 ml-1">Düzenle</a>
                                 @*<a href="/Advance/Add" class="btn btn-m btn-primary  mr-1 ml-4 ">Avans Ekle</a>*@
                                 @*<a href="#" class="btn btn-sm btn-default float-right">Bilgilerim</a>*@
                             </div>
@@ -124,6 +79,7 @@
                                         <div class="mb-0">
                                             <span class="heading text-default mb-2">Ad Soyad</span>
                                             <span class="text-md-center text-white">@Model.Name @Model.MiddleName @Model.Surname @Model.SecondSurname</span>
+                                            @*<span>@Model.Id</span>*@
                                         </div>
                                     </div>
                                 </div>
@@ -152,8 +108,8 @@
                                 <div class="col-lg-12">
                                     <div class="card-profile-stats d-flex justify-content-center mr-auto ml-auto">
                                         <div class="">
-                                            <span class="heading text-default mb-2">Departman</span>
-                                            <span class="text-md-center text-white"></span>
+                                            <span class="heading text-default mb-2">İş Ünvanı</span>
+                                            <span class="text-md-center text-white"> @Model.Job </span>
                                         </div>
                                     </div>
                                 </div>

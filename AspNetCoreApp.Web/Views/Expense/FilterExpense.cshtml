@@ -1,0 +1,79 @@
+﻿@model FilterExpenseVM
+
+@{
+	ViewData["Title"] = "FilterExpense";
+}
+
+<h1>FilterExpense</h1>
+
+<div class="row">
+	<div class="col-md-4">
+		<form asp-controller="Expense" asp-action="FilterExpense" method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<label class="form-control-label" asp-for="TypeOfExpenses">Gider Türü</label>
+				<select class="form-control" asp-for="TypeOfExpenses" asp-items="@Html.GetEnumSelectList<TypeOfExpenses>()">
+					<option>Lutfen Seciniz</option>
+				</select>
+				<span asp-validation-for="TypeOfExpenses" class="text-danger"></span>
+			</div>
+			
+			<div class="form-group">
+				<button type="submit"  class="btn btn-m btn-success ">Filtrele</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>
+				TypeOfExpenses
+			</th>
+			<th>
+				CreationDate
+			</th>
+			<th>
+				ExpenseAmount
+			</th>
+			<th>
+				Description
+			</th>
+
+			<th>
+				Approval
+			</th>
+
+			<th>Islemler</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.Expenses)
+		{
+			<tr>
+				<td>
+					@item.TypeOfExpenses
+				</td>
+				<td>
+					 @item.CreationDate
+				</td>
+				<td>
+					 @item.ExpenseAmount
+				</td>
+				<td>
+					@item.Description
+				</td>
+
+				<td>
+					@item.Approval
+				</td>
+
+				<td>
+
+					<a asp-action="Index">Ana Sayfaya Dön</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

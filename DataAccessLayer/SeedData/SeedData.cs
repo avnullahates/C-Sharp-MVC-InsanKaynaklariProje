@@ -16,23 +16,23 @@ namespace DataAccessLayer.SeedData
     {
         public static void Seed(IApplicationBuilder app)
         {
-            using (var serviceScope = app.ApplicationServices.CreateScope())
-            {
-                Context context = serviceScope.ServiceProvider.GetService<Context>();
-                context.Database.Migrate();
+            //using (var serviceScope = app.ApplicationServices.CreateScope())
+            //{
+            //    Context context = serviceScope.ServiceProvider.GetService<Context>();
+            //    context.Database.Migrate();
 
-                if (!context.Personnels.Any())
-                {
-                    context.Personnels.AddRange(
-                    new Personnel() { Name = "Buse", Surname = "Duran", BirthDate = new DateTime(1996, 04, 03), IdentityNumber = "12345678901", PlaceOfBirth = "İzmir", HireDate = new DateTime(2020, 04, 03), Job = "Mühendis", Mail = "busis@gmail.com", Gender = Gender.Female },
-                    new Personnel() { Name = "Hasan", MiddleName = "Furkan", Surname = "Kesgin", BirthDate = new DateTime(1997, 04, 04), IdentityNumber = "12345678925", PlaceOfBirth = "İstanbul", HireDate = new DateTime(2020, 05, 03), Job = "Mühendis", Mail = "furkan@gmail.com", Gender = Gender.Male },
-                    new Personnel() { Name = "Nuray", Surname = "Marhan", BirthDate = new DateTime(1996, 04, 03), IdentityNumber = "12345678930", PlaceOfBirth = "İstanbul", HireDate = new DateTime(2020, 04, 03), Job = "Yazılım", Mail = "nuray@gmail.com", Gender = Gender.Female }
-                    );
-                }
+            //    if (!context.Personnels.Any())
+            //    {
+            //        context.Personnels.AddRange(
+            //        new Personnel() { Name = "Buse", Surname = "Duran", BirthDate = new DateTime(1996, 04, 03), IdentityNumber = "12345678901", PlaceOfBirth = "İzmir", HireDate = new DateTime(2020, 04, 03), Job = "Mühendis", Email = "busis@gmail.com", Gender = Gender.Female },
+            //        new Personnel() { Name = "Hasan", MiddleName = "Furkan", Surname = "Kesgin", BirthDate = new DateTime(1997, 04, 04), IdentityNumber = "12345678925", PlaceOfBirth = "İstanbul", HireDate = new DateTime(2020, 05, 03), Job = "Mühendis", Email = "furkan@gmail.com", Gender = Gender.Male },
+            //        new Personnel() { Name = "Nuray", Surname = "Marhan", BirthDate = new DateTime(1996, 04, 03), IdentityNumber = "12345678930", PlaceOfBirth = "İstanbul", HireDate = new DateTime(2020, 04, 03), Job = "Yazılım", Email = "nuray@gmail.com", Gender = Gender.Female }
+            //        );
+            //    }
 
-                context.SaveChanges();
+            //    context.SaveChanges();
 
-            }
+            //}
         }
 
     }

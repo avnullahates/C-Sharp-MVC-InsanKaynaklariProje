@@ -2,7 +2,7 @@
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.Repositories;
-
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +20,9 @@ namespace DataAccessLayer.EntityFramework
             _dbContext = dbContext;
         }
 
-
-        
+        public List<Advance> GetListAllAdvance(string id)
+        {
+            return _dbContext.Advances.Include(x => x.Personnel).Where(a=>a.PersonnelID == id).ToList();
+        }
     }
 }

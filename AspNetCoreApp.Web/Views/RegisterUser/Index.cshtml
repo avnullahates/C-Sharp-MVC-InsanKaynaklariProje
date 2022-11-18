@@ -1,0 +1,95 @@
+﻿
+@model UserSignUpViewModel
+
+@{
+    Layout = "_LoginRegisterLayout";
+}
+
+<body class="container bg-gray text-center">
+    @*<div>
+            <h3 class="fa-font-awesome-logo-full"> Core 5.0</h3>
+        </div>*@
+    <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-6">
+            <div class="m-1 p-1 text-white">
+                <h2 class="text-light">Kayıt Ekranı</h2>
+                <p>Yeni Hesap oluştur</p>
+            </div>
+        </div>
+        <div class="col-3">
+
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-3">
+
+        </div>
+
+        <div class="col-6">
+            <form role="form" class="m-1 p-1" asp-controller="RegisterUser" asp-action="Index" method="post">
+
+                <div class="form-group">
+                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                    <label asp-for="@Model.Name" class="text-light"></label>
+                    <input type="text" class="form-control" asp-for="@Model.Name" placeholder="Adınız soyadınız" />
+
+                </div>
+
+                <div class="form-group">
+                    <span asp-validation-for="@Model.Surname" class="text-danger"></span>
+                    <label asp-for="@Model.Surname" class="text-light"></label>
+                    <input type="text" class="form-control" asp-for="@Model.Surname" placeholder="Adınız soyadınız" />
+
+                </div>
+
+                <div class="form-group">
+                    <span asp-validation-for="@Model.Mail" class="text-danger"></span>
+                    <label asp-for="@Model.Mail" class="text-light"></label>
+                    <input type="email" class="form-control" asp-for="@Model.Mail" placeholder="Email" />
+
+                </div>
+
+                <div class="form-group">
+                    <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+                    <label asp-for="@Model.UserName" class="text-light"></label>
+                    <input type="text" class="form-control" asp-for="@Model.UserName" placeholder="Kullanıcı Adınız" />
+
+                </div>
+
+                <div class="form-group">
+                    <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                    <label asp-for="@Model.Password" class="text-light"></label>
+                    <input type="password" class="form-control" asp-for="@Model.Password" placeholder="Şifre" />
+
+                </div>
+
+                <div class="form-group">
+                    <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+                    <label asp-for="@Model.ConfirmPassword" class="text-light"></label>
+                    <input type="password" class="form-control" asp-for="@Model.ConfirmPassword" placeholder="Şifre Tekrar" />
+
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox"><label><input type="checkbox"><i></i> Kullanım Şartlarını okudum kabul ediyorum</label></div>
+                </div>
+
+                <button href="" type="submit" class="btn btn-success btn-block mb-auto">Kayıt Ol</button>
+                <p class="text-muted text-center"><small> Bir hesabınız var mı?</small></p>
+                <a asp-controller="Login" asp-action="Index" class="btn btn-block btn-primary mb-3">Giriş Yap</a>
+
+
+            </form>
+           
+        </div>
+        <div class="col-3">
+
+        </div>
+    </div>
+</body>
+

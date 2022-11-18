@@ -14,17 +14,16 @@ namespace BusinessLayer.Concrete
     public class AdvanceManager : IAdvanceService
     {
         IAdvanceDal _advanceDal;
-        private readonly Context _context;
-
-        public AdvanceManager(IAdvanceDal advanceDal, Context context)
+        
+        public AdvanceManager(IAdvanceDal advanceDal)
         {
             _advanceDal = advanceDal;
-            _context = context;
+            
         }
 
-        public List<Advance> GetListAllAdvance()
+        public List<Advance> GetListAllAdvance(string id)
         {
-            return _context.Advances.Include(x => x.PersonnelID).ToList();
+            return _advanceDal.GetListAllAdvance(id);
         }
     }
 }

@@ -4,7 +4,6 @@ C:\Users\pana_\source\Workspaces\InsanKaynaklari\AspNetCoreApp.Web\EntityLayer\b
 C:\Users\pana_\source\Workspaces\InsanKaynaklari\AspNetCoreApp.Web\EntityLayer\bin\Debug\net5.0\CoreLayer.dll
 C:\Users\pana_\source\Workspaces\InsanKaynaklari\AspNetCoreApp.Web\EntityLayer\bin\Debug\net5.0\ref\CoreLayer.dll
 C:\Users\pana_\source\Workspaces\InsanKaynaklari\AspNetCoreApp.Web\EntityLayer\bin\Debug\net5.0\CoreLayer.pdb
-C:\Users\pana_\source\Workspaces\InsanKaynaklari\AspNetCoreApp.Web\EntityLayer\obj\Debug\net5.0\CoreLayer.csproj.AssemblyReference.cache
 C:\Users\pana_\source\Workspaces\InsanKaynaklari\AspNetCoreApp.Web\EntityLayer\obj\Debug\net5.0\CoreLayer.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\pana_\source\Workspaces\InsanKaynaklari\AspNetCoreApp.Web\EntityLayer\obj\Debug\net5.0\CoreLayer.AssemblyInfoInputs.cache
 C:\Users\pana_\source\Workspaces\InsanKaynaklari\AspNetCoreApp.Web\EntityLayer\obj\Debug\net5.0\CoreLayer.AssemblyInfo.cs
@@ -13,3 +12,4 @@ C:\Users\pana_\source\Workspaces\InsanKaynaklari\AspNetCoreApp.Web\EntityLayer\o
 C:\Users\pana_\source\Workspaces\InsanKaynaklari\AspNetCoreApp.Web\EntityLayer\obj\Debug\net5.0\ref\CoreLayer.dll
 C:\Users\pana_\source\Workspaces\InsanKaynaklari\AspNetCoreApp.Web\EntityLayer\obj\Debug\net5.0\CoreLayer.pdb
 C:\Users\pana_\source\Workspaces\InsanKaynaklari\AspNetCoreApp.Web\EntityLayer\obj\Debug\net5.0\CoreLayer.genruntimeconfig.cache
+C:\Users\pana_\source\Workspaces\InsanKaynaklari\AspNetCoreApp.Web\EntityLayer\obj\Debug\net5.0\CoreLayer.csproj.AssemblyReference.cache

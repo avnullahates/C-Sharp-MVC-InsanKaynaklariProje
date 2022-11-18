@@ -9,7 +9,7 @@ namespace CoreLayer.Enums
     public enum Currency
     {
         TL = 1,
-        Dollar = 2,
+        Dolar = 2,
         Euro = 3
     }
 }

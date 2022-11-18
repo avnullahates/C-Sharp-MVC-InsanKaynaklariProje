@@ -1,0 +1,130 @@
+﻿@model ExpenseDTO
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<div class="main-content" id="panel">
+    <!-- Topnav -->
+    <!-- Header -->
+    <!-- Header -->
+    <div class="header pb-0 d-flex align-items-center" style="min-height: 100px; background-image: url(~/argon/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+        <!-- Header container -->
+        <div class="container-fluid align-items-center ">
+            <div class="container">
+                <div class="col-lg-10 col-md-offset-1">
+                    @*<h1 class="display-2 text-white">Merhaba @Model.Name @Model.Surname</h1>*@
+                    <p class="text-white text-center mt-0 mb-1"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container-fluid mt--6">
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.Message
+            </div>
+        }
+        <!-- Page content -->
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <!-- Card header -->
+                    <div class="card-header border-0">
+                        <h3 class="text-muted mb-2 ml-4">Gider Ekleme Sayfası</h3>
+                    </div>
+                    <!-- Light table -->
+
+                    <div class="card-body border-0">
+                        <form asp-action="Add" asp-controller="Expense" method="post" enctype="multipart/form-data" class="">
+                            <div class="pl-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" asp-for="ExpenseAmount">Gider Miktarı</label><br />
+                                    <span asp-validation-for="ExpenseAmount" class="text-danger"></span>
+                                    <input type="number" asp-for="ExpenseAmount" class="form-control mt-1" oninvalid="this.setCustomValidity('Lütfen bir sayı giriniz')"
+                                           oninput="this.setCustomValidity('')" />
+
+
+                                </div>
+
+                            </div>
+
+                            <div class="pl-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" asp-for="Description">Açıklama</label><br />
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                    <textarea asp-for="Description" rows="4" class="form-control mt-1" placeholder="En az 10 karakterlik açıklama yazınız."></textarea>
+
+                                </div>
+                            </div>
+
+
+                            <div class="pl-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" asp-for="Currency">Para Birimi</label>
+                                    <select class="form-control" asp-for="Currency" asp-items="@Html.GetEnumSelectList<Currency>()">
+                                    </select>
+                                    <span asp-validation-for="Currency" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="pl-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" asp-for="TypeOfExpenses">Gider Türü</label>
+                                    <select class="form-control" asp-for="TypeOfExpenses" asp-items="@Html.GetEnumSelectList<TypeOfExpenses>()">
+                                    </select>
+                                    <span asp-validation-for="TypeOfExpenses" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="pl-lg-4">
+                                <div class="row">
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" asp-for="Invoce">Fatura</label>
+                                            <input type="file" asp-for="Invoce" class="form-control" />
+                                            <span asp-validation-for="Invoce" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+
+                                        <button type="submit" value="Gider Ekle" class="btn btn-m btn-success ml-0">Gider Ekle</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<script src="~/argon/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="~/argon/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/argon/assets/vendor/js-cookie/js.cookie.js"></script>
+<script src="~/argon/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script src="~/argon/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+<!-- Argon JS -->
+<script src="~/argon/assets/js/argon.js?v=1.2.0"></script>
+
+
+

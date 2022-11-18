@@ -1,0 +1,65 @@
+﻿@model CoreLayer.Entities.Expense
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Harcama talebini silmek istediğinizden emin misiniz?</h1>
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.ErrorMessage
+    </div>
+}
+<div>
+
+    <hr />
+    <div class="card">
+
+        <br />
+        <br />
+
+        <div class="row">
+            <div class="col-lg-3 col-md-4 label ">&nbsp;&nbsp; @Html.DisplayNameFor(model => model.ExpenseAmount)</div>
+            <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.ExpenseAmount)</div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-3 col-md-4 label">&nbsp;&nbsp; @Html.DisplayNameFor(model => model.Description)</div>
+            <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.Description)</div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-3 col-md-4 label">&nbsp;&nbsp; @Html.DisplayNameFor(model => model.TypeOfExpenses)</div>
+            <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.TypeOfExpenses)</div>
+        </div>
+        <br />
+       
+        <div class="row">
+            <div class="col-lg-3 col-md-4 label">&nbsp;&nbsp; @Html.DisplayNameFor(model => model.CreationDate)</div>
+            <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.CreationDate)</div>
+        </div>
+        <div class="row">
+            @if (Model.ApprovalDate != null)
+            {
+                <div class="col-lg-3 col-md-4 label">&nbsp;&nbsp; @Html.DisplayNameFor(model => model.ApprovalDate)</div>
+                <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.ApprovalDate)</div>
+            }
+        </div>
+
+
+        <br />
+        <form asp-action="DeleteApprow" asp-route-id="@Model.ID">
+            &nbsp;&nbsp;
+            <input type="hidden" asp-for="ID" />
+            <input type="submit" value="Sil" class="btn btn-danger" /> &nbsp;&nbsp;
+            <a asp-controller="Expense" asp-action="Index" class="btn btn-primary">Harcama Listesine DÖn</a>
+        </form>
+        <br /><br />
+    </div>
+</div>
+
+
+
+

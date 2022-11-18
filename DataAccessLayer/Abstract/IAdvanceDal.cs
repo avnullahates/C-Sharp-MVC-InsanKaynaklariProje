@@ -10,6 +10,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface IAdvanceDal : IGENERICDAL<Advance>
     {
-
+        List<Advance> GetListAllAdvance(string id);
     }
 }
