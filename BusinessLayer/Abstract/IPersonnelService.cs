@@ -14,5 +14,7 @@ namespace BusinessLayer.Abstract
         List<Personnel> GetAllPersonelsWithDepartmentFilter(Expression<Func<Personnel, bool>> exp);
 
         List<Personnel> GetAllPersonelsWithDepartment();
+
+       
     }
 }

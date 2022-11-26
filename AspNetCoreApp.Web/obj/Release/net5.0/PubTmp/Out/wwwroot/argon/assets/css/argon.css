@@ -18984,10 +18984,10 @@ a.btn-icon-only
 }
 .card-profile-image img
 {
-    position: absolute;
+    position:absolute;
     left: 50%;
 
-    max-width: 140px;
+    max-width: 150px !important;
 
     transition: all .15s ease; 
     transform: translate(-50%, -50%) scale(1);

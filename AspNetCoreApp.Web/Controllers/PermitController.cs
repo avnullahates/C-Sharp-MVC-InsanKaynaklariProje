@@ -2,6 +2,7 @@
 using BusinessLayer.Abstract;
 using CoreLayer.Entities;
 using CoreLayer.VM;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreApp.Web.Controllers
 {
+    [Authorize(Roles = "Personel,Manager")]
     public class PermitController : Controller
     {
         private readonly IGenericService<Permit> _permitService;
@@ -66,6 +68,12 @@ namespace AspNetCoreApp.Web.Controllers
                     PermitTypes = vm.Permit.PermitTypes,
                     Description = vm.Permit.Description
                 };
+
+                if (vm.Permit.StartDate <= DateTime.Now || vm.Permit.EndDate <= DateTime.Now)
+                {
+                    ViewBag.Message = "Başlangıç veya Bitiş tarihi Bügünden önce olamaz!";
+                    return View(vm);
+                }
 
                 if (vm.Permit.EndDate.Day - vm.Permit.StartDate.Day < 0)
                 {

@@ -45,6 +45,8 @@ namespace DataAccessLayer.Mappings
             builder.Property(x => x.Gender).IsRequired();
 
             builder.HasOne(a => a.Department).WithMany(a => a.Managers).HasForeignKey(a => a.DepartmentID);
+
+            builder.HasOne(a => a.Company).WithMany(a => a.Managers).HasForeignKey(a => a.CompanyID);
         }
     }
 }

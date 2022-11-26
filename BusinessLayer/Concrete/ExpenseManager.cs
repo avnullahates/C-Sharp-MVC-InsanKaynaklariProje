@@ -22,5 +22,18 @@ namespace BusinessLayer.Concrete
         {
             return expenseRepository.GetListAllExpense(id);
         }
+        public bool Approved(int id)
+        {
+            return expenseRepository.Approved(id);
+        }
+        public bool Rejected(int id)
+        {
+            return expenseRepository.Rejected(id);
+        }
+
+        public List<Expense> GetAllExpenseWithPersonnel()
+        {
+            return expenseRepository.GetAllExpenseWithPersonnel();
+        }
     }
 }

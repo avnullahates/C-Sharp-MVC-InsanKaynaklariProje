@@ -24,12 +24,13 @@ namespace DataAccessLayer.Concrete
         public DbSet<Manager> Managers { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Permit> Permits { get; set; }
+        public DbSet<Company> Companies { get; set; }
 
         public DbSet<Expense> Expenses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new PersonnelMapping()).ApplyConfiguration(new AdvanceMapping()).ApplyConfiguration(new DepartmentMapping()).ApplyConfiguration(new ExpenseMapping()).ApplyConfiguration(new ManagerMapping()).ApplyConfiguration(new PermitMapping());
+            modelBuilder.ApplyConfiguration(new PersonnelMapping()).ApplyConfiguration(new AdvanceMapping()).ApplyConfiguration(new DepartmentMapping()).ApplyConfiguration(new ExpenseMapping()).ApplyConfiguration(new ManagerMapping()).ApplyConfiguration(new PermitMapping()).ApplyConfiguration(new CompanyMapping());
 
             base.OnModelCreating(modelBuilder);
 

@@ -40,12 +40,16 @@ namespace DataAccessLayer.Mappings
 
             builder.Property(x => x.Job).IsUnicode(true).HasMaxLength(100).IsRequired();
 
+            
+
 
             //builder.Property(x => x.Password).IsRequired();
 
             builder.Property(x => x.Gender).IsRequired();
 
             builder.HasOne(a => a.Department).WithMany(a => a.Personnels).HasForeignKey(a => a.DepartmentID);
+
+            //builder.HasOne(a => a.Company).WithMany(a => a.Personnels).HasForeignKey(a => a.CompanyID);
 
         }
     }

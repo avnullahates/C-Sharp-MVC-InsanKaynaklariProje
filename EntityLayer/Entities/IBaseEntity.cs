@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoreLayer.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,6 @@ namespace CoreLayer.Entities
     public interface IBaseEntity
     {
         public bool Status { get; set; }
+        //public Approval Approval { get; set; }
     }
 }

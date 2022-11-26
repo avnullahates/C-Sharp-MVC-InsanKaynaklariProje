@@ -3,6 +3,7 @@ using BusinessLayer.Abstract;
 using CoreLayer.Entities;
 using CoreLayer.VM;
 using DataAccessLayer.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,12 +13,14 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreApp.Web.Controllers
 {
+    [Authorize(Roles = "Personel,Manager")]
     public class AdvanceController : Controller
     {
         private readonly IGenericService<Advance> _advanceService;
         private readonly IGenericService<Personnel> _personnelService;
         private readonly UserManager<Personnel> userManager;
         private readonly IAdvanceService advanceManager;
+
 
         public AdvanceController(IGenericService<Advance> advanceService, IGenericService<Personnel> personnelService, UserManager<Personnel> userManager, IAdvanceService advanceManager)
         {
@@ -44,33 +47,57 @@ namespace AspNetCoreApp.Web.Controllers
 
             PersonnelAdvanceVM vm = new PersonnelAdvanceVM();
             vm.Advance = new Advance();
-
+            var sumAdvance = advanceManager.SumAdvance(personnel.Id);
+            decimal? dif = personnel.Salary - sumAdvance;
+            ViewBag.sumAdvance = sumAdvance;
+            ViewBag.difAdvance = dif;
             vm.Personnels = _personnelService.GetListAll();
             return View(vm);
 
-            
+
         }
 
+
+
         [HttpPost]
-        public IActionResult Add(PersonnelAdvanceVM vm)
+        public async Task<IActionResult> Add(PersonnelAdvanceVM vm)
         {
-            Advance newAdvance = new Advance()
-            {
-                AdvanceAmount = vm.Advance.AdvanceAmount,
-                CreationDate = vm.Advance.CreationDate,
-                Approval = CoreLayer.Enums.Approval.OnayBekliyor,
-
-                Currency = vm.Advance.Currency,
-                Description = vm.Advance.Description,
-
-                PersonnelID = vm.Advance.PersonnelID
-
-            };
+            Personnel personnel = await userManager.GetUserAsync(HttpContext.User);
             if (ModelState.IsValid)
             {
-                _advanceService.Insert(newAdvance);
-                return RedirectToAction("Index");
+                Advance newAdvance = new Advance()
+                {
+                    AdvanceAmount = vm.Advance.AdvanceAmount,
+                    CreationDate = vm.Advance.CreationDate,
+                    Approval = CoreLayer.Enums.Approval.OnayBekliyor,
+                    Currency = vm.Advance.Currency,
+                    Description = vm.Advance.Description
+
+                };
+                newAdvance.PersonnelID = personnel.Id;
+
+
+                var sumAdvance = advanceManager.SumAdvance(personnel.Id);
+                decimal? dif = personnel.Salary - sumAdvance;
+                ViewBag.sumAdvance = sumAdvance;
+                ViewBag.difAdvance = dif;
+
+                if (vm.Advance.AdvanceAmount <= dif)
+                {
+                    _advanceService.Insert(newAdvance);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Message = " Bu yıl ki toplam Avans Miktarı, Toplam Maaşı geçmiştir";
+                    vm.Personnels = _personnelService.GetListAll();
+                    return View(vm);
+                }
+
+
+
             }
+
             else
             {
                 ViewBag.Message = "Avans eklenemedi";
@@ -81,10 +108,9 @@ namespace AspNetCoreApp.Web.Controllers
 
         }
         [HttpGet]
-        public async Task<IActionResult> Update(int id)
+        public async Task<IActionResult> UpdateAdvance(int id)
         {
-            
-
+            Personnel personnel = await userManager.GetUserAsync(HttpContext.User);
             AdvanceVM advanceVM = new AdvanceVM();
             Advance advance = _advanceService.GetById(id);
 
@@ -95,7 +121,7 @@ namespace AspNetCoreApp.Web.Controllers
             return View(advanceVM);
         }
         [HttpPost]
-        public IActionResult Update(AdvanceVM advanceVM, int id)
+        public IActionResult UpdateAdvance(AdvanceVM advanceVM, int id)
         {
             if (ModelState.IsValid)
             {
@@ -113,6 +139,36 @@ namespace AspNetCoreApp.Web.Controllers
                 ModelState.AddModelError("Update", "Güncelleme işlemi başarısız!");
             }
             return View(advanceVM);
+        }
+        [HttpGet]
+        public async Task<IActionResult> AdvanceDetails(int id)
+        {
+            Personnel personnel = await userManager.GetUserAsync(HttpContext.User);
+            Advance advance = _advanceService.GetById(id);
+            return View(advance);
+        }
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            Advance advance = _advanceService.GetById(id);
+            return View(advance);
+        }
+        [HttpPost]
+        public IActionResult DeleteAdvance(int id)
+        {
+            Advance advance = _advanceService.GetById(id);
+
+            if (advance.Approval == CoreLayer.Enums.Approval.OnayBekliyor)
+            {
+                _advanceService.Remove(advance);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Message = "Sadece onay bekleyen avans silinebilir!";
+                return View(advance);
+            }
+
         }
     }
 

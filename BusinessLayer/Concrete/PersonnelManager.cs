@@ -18,6 +18,8 @@ namespace BusinessLayer.Concrete
             _personnelDal = personnelDal;
         }
 
+       
+
         public List<Personnel> GetAllPersonelsWithDepartment()
         {
            return _personnelDal.GetAllPersonelsWithDepartment();

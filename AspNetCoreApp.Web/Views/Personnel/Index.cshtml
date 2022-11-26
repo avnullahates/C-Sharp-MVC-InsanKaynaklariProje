@@ -47,78 +47,7 @@
         <!-- Page content -->
         <div class="container-fluid mt-auto">
             <div class="row">
-                <div class="col-xl-4 order-xl-2" style="margin: auto;">
-                    <div class="card card-profile" style="background-color: #7FBCD2;">
-                        @*<img src="~/argon/assets/img/theme/img-1-1000x600.jpg" alt="Image placeholder" class="card-img-top">*@
-                        <div class="row justify-content-center">
-
-                            <div class="col-lg-3 order-lg-2">
-                                <div class="card-profile-image ml-auto">
-                                    @if (Model.ImagePath != null)
-                                    {
-                                        <img class="rounded-circle" src="~/images/@Model.ImagePath">
-                                    }
-                                    else
-                                    {
-                                        <img src="~/images/6ff8ce19-483d-4986-ab24-84edea0529a6.jpg" class="rounded-circle">
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4" style="background-color:#7FBCD2;">
-                            <div class="d-flex justify-content-between">
-                                <a asp-controller="Personnel" asp-action="Update" asp-route-id="@Model.Id" class="btn btn-m btn-warning mr-4 ml-1">Düzenle</a>
-                                @*<a href="/Advance/Add" class="btn btn-m btn-primary  mr-1 ml-4 ">Avans Ekle</a>*@
-                                @*<a href="#" class="btn btn-sm btn-default float-right">Bilgilerim</a>*@
-                            </div>
-                        </div>
-                        <div class="card-body pt-0 mt-2">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card-profile-stats mr-auto ml-auto">
-                                        <div class="mb-0">
-                                            <span class="heading text-default mb-2">Ad Soyad</span>
-                                            <span class="text-md-center text-white">@Model.Name @Model.MiddleName @Model.Surname @Model.SecondSurname</span>
-                                            @*<span>@Model.Id</span>*@
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card-profile-stats mr-auto ml-auto">
-                                        <div class="mt-0 mb-0">
-                                            <span class="heading text-default mb-2">Adres</span>
-                                            <span class="text-md-center text-white">@Model.Address</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card-profile-stats d-flex justify-content-center mr-auto ml-auto">
-                                        <div>
-                                            <span class="heading text-default mb-2">İşe Giriş Tarihi</span>
-                                            <span class="text-md-center text-white">@Model.HireDate.ToShortDateString()</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card-profile-stats d-flex justify-content-center mr-auto ml-auto">
-                                        <div class="">
-                                            <span class="heading text-default mb-2">İş Ünvanı</span>
-                                            <span class="text-md-center text-white"> @Model.Job </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
+                @await Component.InvokeAsync("PersonnelInfo")
             </div>
         </div>
     </div>

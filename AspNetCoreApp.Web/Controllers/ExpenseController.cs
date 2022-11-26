@@ -2,6 +2,7 @@
 using BusinessLayer.Abstract;
 using CoreLayer.Entities;
 using CoreLayer.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreApp.Web.Controllers
 {
+    [Authorize(Roles = "Personel,Manager")]
     public class ExpenseController : Controller
     {
         private readonly IGenericService<Expense> expenceService;

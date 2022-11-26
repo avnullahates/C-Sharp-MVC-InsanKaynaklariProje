@@ -51,11 +51,9 @@
                 <div class="col">
                     <div class="card">
                         <!-- Card header -->
-                        <div class="card-header border-0">
-                            <h3 class="mb-0">Personel Detay Sayfası</h3>
-
-
-
+                        <div class="row p-4">
+                            <h3 class="mb-2 ml-3"> Personel Detay Sayfası</h3>
+                            <a asp-controller="Login" asp-action="NewPassword" class="btn btn-success ml-auto "> Şifre Güncelle</a>
                         </div>
                         <!-- Light table -->
                         <div class="card-body border-0">
@@ -73,42 +71,47 @@
                                         İşe Alınma Tarihi
                                     </dt>
                                     <dd class="col-sm-4">
-                                        @Html.DisplayFor(model => model.HireDate)
+
+                                        @Convert.ToDateTime(Model.HireDate).ToString("dd/MM/yyyy")
                                     </dd>
-                                    @if(Model.MiddleName !=null){
-                                    <dt class="col-sm-2 mb-2">
-                                        İkinci Ad
-                                    </dt>
-                                    <dd class="col-sm-4">
-                                        @Html.DisplayFor(model => model.MiddleName)
-                                    </dd>
+                                    @if (Model.MiddleName != null)
+                                    {
+                                        <dt class="col-sm-2 mb-2">
+                                            İkinci Ad
+                                        </dt>
+                                        <dd class="col-sm-4">
+                                            @Html.DisplayFor(model => model.MiddleName)
+                                        </dd>
+
                                     }
-                                    <dt class="col-sm-2">
-                                        Soyad
-                                    </dt>
-                                    <dd class="col-sm-4 mb-1">
-                                        @Html.DisplayFor(model => model.Surname)
-                                    </dd>
                                     <dt class="col-sm-2">
                                         İş Ünvanı
                                     </dt>
                                     <dd class="col-sm-4">
                                         @Html.DisplayFor(model => model.Job)
                                     </dd>
-                                    
+                                    <dt class="col-sm-2">
+                                        Soyad
+                                    </dt>
+                                    <dd class="col-sm-4 mb-1">
+                                        @Html.DisplayFor(model => model.Surname)
+                                    </dd>
+
+
                                     <dt class="col-sm-2">
                                         Mail Adresi
                                     </dt>
                                     <dd class="col-sm-4">
                                         @Html.DisplayFor(model => model.Email)
                                     </dd>
-                                    @if(Model.SecondSurname !=null){
-                                    <dt class="col-sm-2">
-                                        İkinci Soyad
-                                    </dt>
-                                    <dd class="col-sm-4">
-                                        @Html.DisplayFor(model => model.SecondSurname)
-                                    </dd>
+                                    @if (Model.SecondSurname != null)
+                                    {
+                                        <dt class="col-sm-2">
+                                            İkinci Soyad
+                                        </dt>
+                                        <dd class="col-sm-4">
+                                            @Html.DisplayFor(model => model.SecondSurname)
+                                        </dd>
                                     }
                                     <dt class="col-sm-2">
                                         Telefon Numarası
@@ -120,7 +123,8 @@
                                         Doğum Tarihi
                                     </dt>
                                     <dd class="col-sm-4">
-                                        @Html.DisplayFor(model => model.BirthDate)
+
+                                        @Convert.ToDateTime(Model.BirthDate).ToString("dd/MM/yyyy")
                                     </dd>
                                     <dt class="col-sm-2">
                                         Adres
@@ -150,7 +154,7 @@
 
                                         @gender
                                     </dd>
-                                    
+
                                     <dt class="col-sm-2">
                                         Doğum Yeri
                                     </dt>
@@ -166,7 +170,7 @@
                             </div>
                         </div>
                         <div>
-                           
+
                         </div>
                     </div>
                 </div>

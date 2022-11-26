@@ -8,6 +8,7 @@ using DataAccessLayer.Repositories;
 using DataAccessLayer.SeedData;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -43,7 +44,16 @@ namespace AspNetCoreApp.Web
                 })
                 .AddEntityFrameworkStores<Context>();
 
-            
+            services.ConfigureApplicationCookie(option =>
+            {
+                option.Cookie.Name = "Identity";  //Web sayfasýnda incele ksmýnda applicationda artýk session adý ýdentity olarak görünecek.
+                option.ExpireTimeSpan = TimeSpan.FromMinutes(10); //default olarak 20 dk iþlem yapmazsa session sonlanacak ama biz 1 dk yaptýk.
+                option.SlidingExpiration = true; //1 dk dolmadan iþlem yaptýðý sürece sessionu uzatýr bu metod.
+
+                option.AccessDeniedPath = "/Home/AccessDenied";
+            });
+            services.AddAuthentication();
+
             services.AddAuthentication();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
@@ -62,8 +72,8 @@ namespace AspNetCoreApp.Web
             services.AddTransient<IPersonnelDal, EFPersonnelRepository>();
             services.AddTransient<IPersonnelService, PersonnelManager>();
 
-
-
+            services.AddTransient<ICompanyDal, EFCompanyRepository>();
+            services.AddTransient<ICompanyService, CompanyManager>();
 
         }
 

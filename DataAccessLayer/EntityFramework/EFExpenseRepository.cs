@@ -1,4 +1,5 @@
 ﻿using CoreLayer.Entities;
+using CoreLayer.Enums;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.Repositories;
@@ -23,6 +24,23 @@ namespace DataAccessLayer.EntityFramework
         public List<Expense> GetListAllExpense(string id)
         {
            return dbContext.Expenses.Include(a=>a.personnel).Where(a=>a.PersonnelID==id).ToList();
+        }
+
+        public bool Approved(int id)
+        {
+            Expense approved = GetById(id);
+            approved.Approval = Approval.Onaylandı;
+            return Update(approved);
+        }
+        public bool Rejected(int id)
+        {
+            Expense approved = GetById(id);
+            approved.Approval = Approval.Reddedildi;
+            return Update(approved);
+        }
+        public List<Expense> GetAllExpenseWithPersonnel()
+        {
+            return dbContext.Expenses.Include(a => a.personnel).ToList();
         }
     }
 }

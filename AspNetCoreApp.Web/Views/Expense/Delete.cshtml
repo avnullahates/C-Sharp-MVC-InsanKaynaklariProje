@@ -5,60 +5,62 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Harcama talebini silmek istediğinizden emin misiniz?</h1>
-@if (ViewBag.ErrorMessage != null)
-{
-    <div class="alert alert-danger" role="alert">
-        @ViewBag.ErrorMessage
-    </div>
-}
-<div>
 
-    <hr />
-    <div class="card">
+<div class="container">
+    <h3 class="mb-3 pl-3 pt-3">Harcama talebini silmek istediğinizden emin misiniz?</h3>
+    @if (ViewBag.ErrorMessage != null)
+    {
+<div class="alert alert-danger" role="alert">
+    @ViewBag.ErrorMessage
+</div>}
+    <div>
+        
+        <div class="card pl-2">
 
-        <br />
-        <br />
+            <br />
 
-        <div class="row">
-            <div class="col-lg-3 col-md-4 label ">&nbsp;&nbsp; @Html.DisplayNameFor(model => model.ExpenseAmount)</div>
-            <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.ExpenseAmount)</div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-lg-3 col-md-4 label">&nbsp;&nbsp; @Html.DisplayNameFor(model => model.Description)</div>
-            <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.Description)</div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-lg-3 col-md-4 label">&nbsp;&nbsp; @Html.DisplayNameFor(model => model.TypeOfExpenses)</div>
-            <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.TypeOfExpenses)</div>
-        </div>
-        <br />
-       
-        <div class="row">
-            <div class="col-lg-3 col-md-4 label">&nbsp;&nbsp; @Html.DisplayNameFor(model => model.CreationDate)</div>
-            <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.CreationDate)</div>
-        </div>
-        <div class="row">
-            @if (Model.ApprovalDate != null)
-            {
-                <div class="col-lg-3 col-md-4 label">&nbsp;&nbsp; @Html.DisplayNameFor(model => model.ApprovalDate)</div>
-                <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.ApprovalDate)</div>
-            }
-        </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 label ">&nbsp;&nbsp; @Html.DisplayNameFor(model => model.ExpenseAmount)</div>
+                <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.ExpenseAmount) @Html.DisplayFor(model => model.Currency)</div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-3 col-md-4 label">&nbsp;&nbsp; @Html.DisplayNameFor(model => model.Description)</div>
+                <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.Description)</div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-3 col-md-4 label">&nbsp;&nbsp; @Html.DisplayNameFor(model => model.TypeOfExpenses)</div>
+                <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.TypeOfExpenses)</div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-lg-3 col-md-4 label">&nbsp;&nbsp; @Html.DisplayNameFor(model => model.CreationDate)</div>
+                <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.CreationDate)</div>
+            </div>
+            <div class="row">
+                @if (Model.ApprovalDate != null)
+                {
+                    <div class="col-lg-3 col-md-4 label">&nbsp;&nbsp; @Html.DisplayNameFor(model => model.ApprovalDate)</div>
+                                    <div class="col-lg-9 col-md-8"> @Html.DisplayFor(model => model.ApprovalDate)</div>
+                                }
+            </div>
 
 
-        <br />
-        <form asp-action="DeleteApprow" asp-route-id="@Model.ID">
-            &nbsp;&nbsp;
-            <input type="hidden" asp-for="ID" />
-            <input type="submit" value="Sil" class="btn btn-danger" /> &nbsp;&nbsp;
-            <a asp-controller="Expense" asp-action="Index" class="btn btn-primary">Harcama Listesine DÖn</a>
-        </form>
-        <br /><br />
+            <br />
+            <form asp-action="DeleteApprow" asp-route-id="@Model.ID">
+                &nbsp;&nbsp;
+                <input type="hidden" asp-for="ID" />
+                <input type="submit" value="Sil" class="btn btn-danger" /> &nbsp;&nbsp;
+                <a asp-controller="Expense" asp-action="Index" class="btn btn-link">Harcama Listesine Dön</a>
+            </form>
+            <br />
+        </div>
     </div>
 </div>
+
+
 
 
 

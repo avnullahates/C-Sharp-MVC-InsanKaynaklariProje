@@ -1,0 +1,114 @@
+﻿@model CoreLayer.Entities.Advance
+
+@{
+    ViewData["Title"] = "RefusalAdvancetApprow";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="main-content" id="panel">
+    <!-- Topnav -->
+    <!-- Header -->
+    <!-- Header -->
+    <div class="header pb-0 d-flex align-items-center" style="min-height: 100px; background-image: url(~/argon/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+        <!-- Header container -->
+        <div class="container-fluid align-items-center ">
+            <div class="container">
+                <div class="col-lg-10 col-md-offset-1">
+                    @*<h1 class="display-2 text-white">Merhaba @Model.Name @Model.Surname</h1>*@
+                    <p class="text-white text-center mt-0 mb-1"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <!-- Card header -->
+                    <div class="card-header border-0">
+                        <h3 class="mb-0"> Avans Reddetme Sayfası </h3>
+                    </div>
+                    <!-- Light table -->
+                    <div class="card-body border-0">
+
+                        <div class="container-fluid">
+                            <dl class="row mt-2">
+                                <dt class="col-sm-2 mb-1">
+                                    Avans Miktari
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.AdvanceAmount) @Html.DisplayFor(model => model.Currency)
+                                </dd>
+                                <dt class="col-sm-2 mb-1">
+                                    Talep Tarihi
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.CreationDate)
+                                </dd>
+                                <dt class="col-sm-2 mb-1">
+                                    Onaylanma Tarihi
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.ApprovalDate)
+                                </dd>
+
+
+                                <dt class="col-sm-2 mb-1">
+                                    Onay Durumu
+                                </dt>
+
+
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Approval)
+                                </dd>
+
+                                <dt class="col-sm-2 mb-1">
+                                    Açıklama
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => model.Description)
+                                </dd>
+
+
+                            </dl>
+
+
+                            <form asp-route-id="@Model.ID" method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <div class="form-group">
+                                    <label asp-for="ManagerDescription" class="control-label"></label>
+                                    <input asp-for="ManagerDescription" class="form-control" />
+                                    <span asp-validation-for="ManagerDescription" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Reddet" asp-action="RefusalAdvance" asp-route-id="@Model.ID" class="btn btn-outline-danger" />
+                                    <a asp-action="GetListAdvance" class="btn btn-link mb-4 ml-4">Avans Listesine Dön</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+<script src="~/argon/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="~/argon/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/argon/assets/vendor/js-cookie/js.cookie.js"></script>
+<script src="~/argon/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script src="~/argon/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+<!-- Argon JS -->
+<script src="~/argon/assets/js/argon.js?v=1.2.0"></script>
+
+
+
+

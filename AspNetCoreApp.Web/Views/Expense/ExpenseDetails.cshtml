@@ -39,19 +39,31 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-3 col-md-6 label mb-1">Harcama Tutarı</div>
-                                <div class="col-lg-3 col-md-6"> @Html.DisplayFor(model => model.ExpenseAmount) TL</div>      
-                            </div>                          
-                            <div class="row">               
+                                <div class="col-lg-3 col-md-6"> @Html.DisplayFor(model => model.ExpenseAmount) @Html.DisplayFor(model => model.Currency)</div>
+                            </div>
+                            <div class="row">
                                 <div class="col-lg-3 col-md-6 label mb-1">Harcama Türü</div>
-                                <div class="col-lg-3 col-md-6"> @Html.DisplayFor(model => model.TypeOfExpenses)</div>        
-                            </div>                          
-                            <div class="row">               
+                                <div class="col-lg-3 col-md-6"> @Html.DisplayFor(model => model.TypeOfExpenses)</div>
+                            </div>
+                            <div class="row">
                                 <div class="col-lg-3 col-md-6 label mb-1">Açıklama</div>
-                                <div class="col-lg-3 col-md-6"> @Html.DisplayFor(model => model.Description)</div>          
-                            </div>                         
-                            <div class="row">              
+                                <div class="col-lg-3 col-md-6"> @Html.DisplayFor(model => model.Description)</div>
+                            </div>
+
+                            @if (Model.Approval == Approval.Reddedildi)
+                            {
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 label mb-1">Reddetme Sebebi</div>
+                                    <div class="col-lg-3 col-md-6"> @Html.DisplayFor(model => model.ManagerDescription)</div>
+                                </div>
+                            }
+                            <div class="row">
                                 <div class="col-lg-3 col-md-6 label mb-1">Onay Durumu</div>
                                 <div class="col-lg-3 col-md-6"> @Html.DisplayFor(model => model.Approval)</div>
+                            </div>
+                            <div class="row mb-1">
+                                <div class="col-lg-3 col-md-6 label mb-1">Oluşturma Tarihi</div>
+                                <div class="col-lg-3 col-md-6"> @Html.DisplayFor(model => model.CreationDate)</div>
                             </div>
                             @if (@Model.Invoce != null)
                             {
@@ -59,9 +71,10 @@
 
                                     <div class="col-lg-3 col-md-6 label mb-1">Fatura</div>
 
-                                    <div class="col-lg-3 col-md-6"> <a href="~/Files/Invoices/@Model.Invoce">
-                                        <img src="~/Files/Invoices/@Model.Invoce" width="100" height="100">
-                                    </a>
+                                    <div class="col-lg-3 col-md-6">
+                                        <a href="~/Files/Invoices/@Model.Invoce">
+                                            <img src="~/images/pdf.png" width="50" height="50">
+                                        </a>
                                     </div>
                                 </div>
                             }
@@ -73,17 +86,14 @@
                                 </div>
                             }
 
-                            <div class="row mb-1">
-                                <div class="col-lg-3 col-md-6 label mb-1">Oluşturma Tarihi</div>
-                                <div class="col-lg-3 col-md-6"> @Html.DisplayFor(model => model.CreationDate)</div>
-                            </div>
+
                             <form asp-controller="Expense" asp-action="ExpenseDetails">
                                 <div class="">
                                     <input type="hidden" asp-for="ID" />
                                     <a asp-action="UpdateExpense" asp-route-id="@Model.ID" class="btn btn-success mt-2">Güncelle</a>
                                     <a asp-controller="Expense" asp-action="Index" class="btn btn-link mt-2 ml-2">Harcama Listesine Dön</a>
                                 </div>
-                                
+
                             </form>
                         </div>
                     </div>
@@ -99,3 +109,11 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+<script src="~/argon/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="~/argon/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/argon/assets/vendor/js-cookie/js.cookie.js"></script>
+<script src="~/argon/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script src="~/argon/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+<!-- Argon JS -->
+<script src="~/argon/assets/js/argon.js?v=1.2.0"></script>
+

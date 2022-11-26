@@ -1,0 +1,156 @@
+﻿
+
+@using CoreLayer.Enums
+@model CompanyVM
+
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+
+<div class="main-content" id="panel">
+    <!-- Topnav -->
+    <!-- Header -->
+    <!-- Header -->
+    <div class="header pb-0 d-flex align-items-center" style="min-height: 100px; background-image: url(~/argon/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+        <!-- Header container -->
+        <div class="container-fluid align-items-center ">
+            <div class="container">
+                <div class="col-lg-10 col-md-offset-1">
+                    @*<h1 class="display-2 text-white">Merhaba @Model.Name @Model.Surname</h1>*@
+                    <p class="text-white text-center mt-0 mb-1"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid mt--6">
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.Message
+            </div>
+        }
+        <!-- Page content -->
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <!-- Card header -->
+                    <div class="card-header border-0">
+                        <h3 class="text-muted mb-2 ml-4">Şirket Ekleme Sayfası</h3>
+                    </div>
+                    <!-- Light table -->
+                    <div class="card-body border-0">
+                        <form asp-action="AddCompany" asp-controller="Admin" method="post" enctype="multipart/form-data" class="">
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="pl-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" asp-for="@Model.Name">Şirket Adı</label>
+                                            <span asp-validation-for="@Model.Name" class="text-danger ml-2"></span>
+                                            <input type="text" asp-for="@Model.Name" class="form-control" />
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="pl-lg-4 pr-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" asp-for="@Model.LogoPath">Şirket Logosu</label>
+                                            <input class="form-control" asp-for="@Model.LogoPath" type="file" />
+                                            <span asp-validation-for="@Model.LogoPath" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                @*<div class="col-lg-6">
+                                        <div class="pl-lg-4 pr-4">
+                                            <div class="form-group">
+                                                <label class="form-control-label" asp-for="@Model.Mail">Şirket Maili</label>
+                                                <span asp-validation-for="@Model.Mail" class="text-danger ml-2"></span>
+                                                <input class="form-control" asp-for="@Model.Mail" type="email" />
+
+                                            </div>
+
+                                        </div>
+                                    </div>*@
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="pl-lg-4">
+                                        <div class="form-group">
+
+                                            <label asp-for="@Model.PhoneNumber" class="form-control-label">Şirket Telefonu</label>
+                                            <span asp-validation-for="@Model.PhoneNumber" class="text-danger ml-2"></span>
+                                            <input asp-for="@Model.PhoneNumber" type="tel" name="phone" pattern="[0-9]{4}[0-9]{3}[0-9]{4}" class="form-control mt-1" id="PhoneNumber">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="pl-lg-4 pr-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" asp-for="@Model.CompanyType">Şirket Türü</label>
+                                            <select class="form-control" asp-for="@Model.CompanyType" asp-items="@Html.GetEnumSelectList<CompanyType>()"></select>
+                                            <span asp-validation-for="@Model.CompanyType" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="pl-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" asp-for="@Model.Address">Şirket Adresi</label>
+                                            <span asp-validation-for="@Model.Address" class="text-danger ml-2"></span>
+                                            <textarea class="form-control" asp-for="@Model.Address"></textarea>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="mt-1" style="margin-left:40px;">
+                                    <div class="form-group">
+                                        <button type="submit" value="Şirket Ekle" class="btn btn-m btn-success">Şirket Ekle</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/argon/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="~/argon/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/argon/assets/vendor/js-cookie/js.cookie.js"></script>
+    <script src="~/argon/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="~/argon/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+    <!-- Argon JS -->
+    <script src="~/argon/assets/js/argon.js?v=1.2.0"></script>
+
+

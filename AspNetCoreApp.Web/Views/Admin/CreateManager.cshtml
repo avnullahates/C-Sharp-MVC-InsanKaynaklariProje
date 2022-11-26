@@ -1,0 +1,165 @@
+﻿@model UserSignUpViewModel
+
+@{
+	ViewData["Title"] = "Kullanıcı Ekleme";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@if (ViewBag.Message != null)
+{
+	<div class="alert alert-danger" role="alert">
+		@ViewBag.Message
+	</div>
+}
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+	<meta name="author" content="Creative Tim">
+	<title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+	<!-- Favicon -->
+	<link rel="icon" href="~/argon/assets/img/brand/favicon.png" type="image/png">
+	<!-- Fonts -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+	<!-- Icons -->
+	<link rel="stylesheet" href="~/argon/assets/vendor/nucleo/css/nucleo.css" type="text/css">
+	<link rel="stylesheet" href="~/argon/assets/vendor/@@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+	<!-- Argon CSS -->
+	<link rel="stylesheet" href="~/argon/assets/css/argon.css?v=1.2.0" type="text/css">
+	<title>IK Application</title>
+</head>
+<div class="container">
+
+	<section class="section register min-vh-50 d-flex flex-column align-items-center justify-content-center py-2">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-12">
+					<h2 class="mb-3">Personel Ekle</h2>
+
+				</div>
+
+				<div class="col-lg-12 col-md-6 d-flex flex-column align-items-center justify-content-center">
+					<form asp-controller="Admin" asp-action="CreateManager" class="row g-3" enctype="multipart/form-data" method="post">
+
+
+                        <div class="col-6 mb-2">
+                            <label asp-for="Name" class="form-label">@Html.DisplayNameFor(model => model.Name)</label>
+                            <span asp-validation-for="Name" class="text-danger ml-2"></span>
+                            <input asp-for="Name" type="text" class="form-control mt-1" id="Name">
+
+                        </div>
+
+                        <div class="col-6 mb-2">
+                            <label asp-for="PhoneNumber" class="form-label">Telefon Numarası</label>
+                            <span asp-validation-for="PhoneNumber" class="text-danger ml-2"></span>
+                            <input asp-for="PhoneNumber" type="tel" name="phone" pattern="[0-9]{4}[0-9]{3}[0-9]{4}" class="form-control mt-1" id="PhoneNumber">
+
+                        </div>
+
+                        <div class="col-6 mb-2">
+                            <label asp-for="MiddleName" class="form-label">@Html.DisplayNameFor(model => model.MiddleName)</label>
+                            <span asp-validation-for="MiddleName" class="text-danger ml-2"></span>
+                            <input asp-for="MiddleName" class="form-control mt-1">
+
+                        </div>
+						<div class="col-6 mb-2">
+                            <div class="form-group">
+                                <label class="form-control-label" asp-for="Gender">Cinsiyet</label>
+                                <span asp-validation-for="Gender" class="text-danger ml-2"></span>
+                                <select class="form-control mt-1" asp-for="Gender" asp-items="@Html.GetEnumSelectList<Gender>()">
+                                </select>
+
+                            </div>
+						</div>
+
+                        <div class="col-6 mb-2">
+                            <label asp-for="Surname" class="form-label">@Html.DisplayNameFor(model => model.Surname)</label>
+                            <span asp-validation-for="Surname" class="text-danger ml-2"></span>
+                            <input asp-for="Surname" type="text" class="form-control mt-1" id="Surname">
+
+                        </div>
+
+                        <div class="col-6 mb-2">
+                            <label asp-for="Job" class="form-label">@Html.DisplayNameFor(model => model.Job)</label>
+                            <span asp-validation-for="Job" class="text-danger ml-2"></span>
+                            <input asp-for="Job" type="text" class="form-control mt-1">
+
+
+                        </div>
+                        <div class="col-6 mb-2">
+                            <label asp-for="PlaceOfBirth" class="form-label">@Html.DisplayNameFor(model => model.PlaceOfBirth)</label>
+                            <span asp-validation-for="PlaceOfBirth" class="text-danger ml-2"></span>
+                            <input asp-for="PlaceOfBirth" class="form-control mt-1">
+
+
+                        </div>
+                        <div class="col-6 mb-2">
+                            <label asp-for="DepartmentID" class="control-label"></label>
+                            <span asp-validation-for="DepartmentID" class="text-danger ml-2"></span>
+
+                            <select asp-for="DepartmentID" class="form-control mt-1">
+                                <option>Lütfen Seçiniz</option>
+                                @foreach (Department item in Model.Departments)
+                                {
+                                    <option value="@item.ID">@item.DepartmentName</option>
+                                }
+                            </select>
+
+                        </div>
+                        <div class="col-6 mb-2">
+                            <label asp-for="IdentityNumber" class="form-label">@Html.DisplayNameFor(model => model.IdentityNumber)</label>
+                            <span asp-validation-for="IdentityNumber" class="text-danger ml-2"></span>
+                            <input asp-for="IdentityNumber" type="text" class="form-control mt-1">
+
+                        </div>
+
+                        <div class="col-6 mb-2">
+                            <label asp-for="HireDate" class="form-label">@Html.DisplayNameFor(model => model.HireDate)</label>
+                            <span asp-validation-for="HireDate" class="text-danger ml-2"></span>
+                            <input asp-for="HireDate" type="date" value="@DateTime.Now" class="form-control mt-1" id="HireDate">
+
+
+                        </div>
+
+                        <div class="col-6 mb-2">
+                            <label asp-for="BirthDate" class="form-label">@Html.DisplayNameFor(model => model.BirthDate)</label>
+                            <span asp-validation-for="BirthDate" class="text-danger ml-2"></span>
+                            <input asp-for="BirthDate" type="date" value="@DateTime.Now" class="form-control mt-1" id="BirthDate">
+
+                        </div>
+
+                        <div class="col-6">
+                            <label asp-for="Address" class="form-label">@Html.DisplayNameFor(model => model.Address)</label>
+                            <span asp-validation-for="Address" class="text-danger ml-2"></span>
+                            <textarea asp-for="Address" type="text" class="form-control mt-1" id="Address"></textarea>
+
+                        </div>
+
+						<div class="col-6 mb-3 mt-3">
+							<button type="submit" value="Ekle" class="btn btn-primary">Ekle</button>
+							<a asp-controller="Personnel" asp-action="Index" class="btn btn-link">Geri Dön</a>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<script src="~/argon/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="~/argon/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/argon/assets/vendor/js-cookie/js.cookie.js"></script>
+<script src="~/argon/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script src="~/argon/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+<!-- Argon JS -->
+<script src="~/argon/assets/js/argon.js?v=1.2.0"></script>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

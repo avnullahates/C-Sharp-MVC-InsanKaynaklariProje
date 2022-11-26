@@ -1,0 +1,190 @@
+﻿
+
+@model List<Company>
+
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["Message"]
+    </div>
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+    <meta name="author" content="Creative Tim">
+    <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+    <!-- Favicon -->
+    <link rel="icon" href="~/argon/assets/img/brand/favicon.png" type="image/png">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <!-- Icons -->
+    <link rel="stylesheet" href="~/argon/assets/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="~/argon/assets/vendor/@@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <!-- Argon CSS -->
+    <link rel="stylesheet" href="~/argon/assets/css/argon.css?v=1.2.0" type="text/css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body>
+
+    <!-- Main content -->
+    <div class="main-content" id="panel">
+        <!-- Topnav -->
+        <!-- Header -->
+        <!-- Header -->
+        <div class="header pb-0 d-flex align-items-center" style="min-height: 100px; background-image: url(~/argon/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+            <!-- Mask -->
+            <span class="mask bg-gradient-default opacity-8"></span>
+            <!-- Header container -->
+            <div class="container-fluid align-items-center ">
+                <div class="container">
+                    <div class="col-lg-10 col-md-offset-1">
+                        @*<h1 class="display-2 text-white">Merhaba @Model.Name @Model.Surname</h1>*@
+                        <p class="text-white text-center mt-0 mb-1"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page content -->
+        <div class="container-fluid mt--6">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <!-- Card header -->
+                        <div class="card-header border-0">
+                            <div class="row">
+                                <h3 class="mb-2 ml-3"> Şirket Listeleme Sayfası</h3>
+                                <a asp-controller="Admin" asp-action="AddCompany" class="btn btn-success ml-auto mr-2">Şirket Ekle</a>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                        </div>
+                        <div class="row justify-content-end">
+                            <div class="col-md-4">
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col" class="sort" data-sort="name"> Şirket Adı </th>
+                                        <th scope="col" class="sort" data-sort="name"> Şirket Maili </th>
+                                        <th scope="col" class="sort" data-sort="budget"> Şirket Adresi </th>
+                                        <th scope="col" class="sort" data-sort="status"> Şirket Türü </th>
+                                        <th scope="col" class="sort" data-sort="status">İşlemler</th>
+
+
+
+                                    </tr>
+                                </thead>
+                                <tbody class="list">
+
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+
+                                                <div class="media-body">
+                                                    <span class="name mb-0 text-sm">
+                                                        @item.Name
+                                                        @if (item.Name != null)
+                                                        {
+
+                                                        }&nbsp;
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </th>
+
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+
+                                                <div class="media-body">
+                                                    <span class="name mb-0 text-sm">
+                                                        @item.Mail
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <th scope="row">
+                                            <div class="media align-items-center">
+
+                                                <div class="media-body">
+                                                    <span class="name mb-0 text-sm"> @item.Address </span>
+                                                </div>
+                                            </div>
+                                        </th>
+
+                                        @if (item.CompanyType == CompanyType.LimitedSirket)
+                                        {
+                                            <th scope="row">
+                                                <div class="media align-items-center">
+
+                                                    <div class="media-body">
+                                                        <span class="name mb-0 text-sm"> Limited Şirketi</span>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                        }
+                                        @if (item.CompanyType == CompanyType.AnonimSirket)
+                                        {
+                                            <th scope="row">
+                                                <div class="media align-items-center">
+
+                                                    <div class="media-body">
+                                                        <span class="name mb-0 text-sm"> Anonim Şirketi</span>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                        }
+
+
+                                        <td>
+                                            <a asp-action="CreateManager" asp-controller="Admin" asp-route-id="@item.ID" class="btn btn-primary">Yönetici Ekle</a>
+                                        </td>
+
+                                    </tr>
+
+                                    }
+
+                                </tbody>
+
+                            </table>
+
+
+                        </div>
+                    </div><div class="pagination justify-content-center ">
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+    <script src="~/argon/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="~/argon/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/argon/assets/vendor/js-cookie/js.cookie.js"></script>
+    <script src="~/argon/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="~/argon/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+    <!-- Argon JS -->
+    <script src="~/argon/assets/js/argon.js?v=1.2.0"></script>
+</body>
+
+

@@ -15,7 +15,7 @@
         <div class="container-fluid align-items-center ">
             <div class="container">
                 <div class="col-lg-10 col-md-offset-1">
-                    @*<h1 class="display-2 text-white">Merhaba @Model.Name @Model.Surname</h1>*@
+
                     <p class="text-white text-center mt-0 mb-1"></p>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                                     Avans Miktari
                                 </dt>
                                 <dd class="col-sm-10">
-                                    @Html.DisplayFor(model => model.AdvanceAmount)
+                                    @Html.DisplayFor(model => model.AdvanceAmount) @Html.DisplayFor(model => model.Currency)
                                 </dd>
                                 <dt class="col-sm-2 mb-1">
                                     Talep Tarihi
@@ -54,7 +54,7 @@
                                 <dd class="col-sm-10">
                                     @Html.DisplayFor(model => model.ApprovalDate)
                                 </dd>
-                             
+
 
                                 <dt class="col-sm-2 mb-1">
                                     Onay Durumu
@@ -62,13 +62,23 @@
                                 <dd class="col-sm-10">
                                     @Html.DisplayFor(model => model.Approval)
                                 </dd>
-                               
+
                                 <dt class="col-sm-2 mb-1">
                                     Açıklama
                                 </dt>
                                 <dd class="col-sm-10">
                                     @Html.DisplayFor(model => model.Description)
                                 </dd>
+
+                                @if (Model.Approval == Approval.Reddedildi)
+                                {
+                                    <dt class="col-sm-2 mb-1">
+                                        Reddetme Sebebi
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        @Html.DisplayFor(model => model.ManagerDescription)
+                                    </dd>
+                                }
 
 
                             </dl>
@@ -79,10 +89,10 @@
 
                                 @if (Model.Approval == Approval.OnayBekliyor)
                                 {
-                                    <a asp-action="UpdateAdvance" asp-route-id="@Model.ID" class="btn btn-info mb-4 ml-2">Güncelle</a>
-                                    <a asp-action="Delete" asp-route-id="@Model.ID" class="btn btn-danger mb-4 ml-2">Sil</a>
+                                    <a asp-action="UpdateAdvance" asp-route-id="@Model.ID" class="btn btn-info mb-4 ml-4">Güncelle</a>
+                                    <a asp-action="Delete" asp-route-id="@Model.ID" class="btn btn-danger mb-4 ml-4">Sil</a>
                                 }
-                                <a asp-action="Index" class="btn btn-primary mb-4 ml-2">Avans Listesine Dön</a>
+                                <a asp-action="Index" class="btn btn-link mb-4 ml-4">Avans Listesine Dön</a>
                             </div>
                         </div>
                     </div>

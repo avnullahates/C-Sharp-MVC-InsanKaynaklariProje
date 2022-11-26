@@ -1,0 +1,147 @@
+﻿@model IEnumerable<CoreLayer.Entities.Expense>
+
+@{
+    ViewData["Title"] = "GetListExpense";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ string renk = "";}
+<div class="main-content" id="panel">
+    <!-- Topnav -->
+    <!-- Header -->
+    <!-- Header -->
+    <div class="header pb-0 d-flex align-items-center" style="min-height: 100px; background-image: url(~/argon/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+        <!-- Header container -->
+        <div class="container-fluid align-items-center ">
+            <div class="container">
+                <div class="col-lg-10 col-md-offset-1">
+                    @*<h1 class="display-2 text-white">Merhaba @Model.Name @Model.Surname</h1>*@
+                    <p class="text-white text-center mt-0 mb-1"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt--6">
+
+        <!-- Page content -->
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <!-- Card header -->
+                    <div class="card-header border-0">
+                        <h3 class="text-muted mb-2 ml-4">Gider Listeleme Sayfası</h3>
+                    </div>
+                    <!-- Light table -->
+                    <div class="card-body border-0">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Gider Numarası
+                                    </th>
+                                    <th>
+                                       İsim Soyisim
+                                    </th>
+                                    <th>
+                                        Harcama Tutarı
+                                    </th>
+                                    <th>
+                                        Fatura
+                                    </th>
+                                    <th>
+                                        Gider Oluşturma Tarihi
+                                    </th>
+                                    <th>
+                                        Onay Durumu
+                                    </th>
+
+                                    <th>
+                                        Harcam Tutarı
+                                    </th>
+
+                                    <th>
+                                        Onaylanma Tarihi
+                                    </th>
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.personnel.Name)  @Html.DisplayFor(modelItem => item.personnel.Surname)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ExpenseAmount)  @Html.DisplayFor(modelItem => item.Currency)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Invoce)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CreationDate)
+                                        </td>
+                                        @if (item.Approval == Approval.Onaylandı)
+                                        {
+                                            renk = "bg-green";
+                                        }
+                                        @if (item.Approval == Approval.OnayBekliyor)
+                                        {
+                                            renk = "bg-orange";
+                                        }
+                                        @if (item.Approval == Approval.Reddedildi)
+                                        {
+                                            renk = "bg-red";
+                                        }
+
+                                        <td class="@renk" style="color:white">
+                                            @Html.DisplayFor(modelItem => item.Approval)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TypeOfExpenses)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ApprovalDate)
+                                        </td>
+
+                                        <td>
+
+                                            <form asp-route-id="@item.ID">
+                                                <a asp-action="DetailsExpense" class="btn btn-outline-primary" asp-route-id="@item.ID">Detay</a>
+                                                @if (item.Approval == Approval.OnayBekliyor)
+                                                {
+                                                    <input type="submit" value="Onayla" asp-action="ApproveExpense" asp-route-id="@item.ID" class="btn btn-outline-success" />
+                                                    <input type="submit" value="Reddet" asp-action="RefusalExpenseApprow" asp-route-id="@item.ID" class="btn btn-outline-danger" />
+
+                                                }
+                                            </form>
+
+
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/argon/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="~/argon/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/argon/assets/vendor/js-cookie/js.cookie.js"></script>
+<script src="~/argon/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script src="~/argon/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+<!-- Argon JS -->
+<script src="~/argon/assets/js/argon.js?v=1.2.0"></script>
+

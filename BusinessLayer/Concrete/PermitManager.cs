@@ -13,16 +13,35 @@ namespace BusinessLayer.Concrete
 {
     public class PermitManager : IPermitService
     {
-        private readonly IPermitDal permitDal;
+         IPermitDal _permitDal;
 
         public PermitManager(IPermitDal permitDal)
         {
-            this.permitDal = permitDal;
+            
+            _permitDal = permitDal;
         }
 
         public List<Permit> GetListAllPermit(string id)
         {
-            return permitDal.GetListAllPermit(id);
+            return _permitDal.GetListAllPermit(id);
+        }
+        public bool Approved(int id)
+        {
+            return _permitDal.Approved(id);
+        }
+        public bool Rejected(int id)
+        {
+            return _permitDal.Rejected(id);
+        }
+
+        public List<Permit> GetListAllPermit()
+        {
+            return _permitDal.GetListAll();
+        }
+
+        public List<Permit> GetAllPermitWithPersonnel()
+        {
+            return _permitDal.GetAllPermitWithPersonnel();
         }
     }
 }

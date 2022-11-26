@@ -31,6 +31,8 @@ namespace DataAccessLayer.EntityFramework
             return dbContext.Personnels.Include(a => a.Department).ToList();
         }
 
+        
+
 
     }
 }

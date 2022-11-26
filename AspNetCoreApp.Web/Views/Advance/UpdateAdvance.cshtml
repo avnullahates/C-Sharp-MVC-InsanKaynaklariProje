@@ -39,46 +39,36 @@
                         <h3 class="mb-0"> Avans Düzenle Sayfası </h3>
                     </div>
                     <!-- Light table -->
-                    <div class="table-responsive">
+                    <div class="card-body border-0">
 
-                        <div class="container">
+                        <form asp-controller="Advance" asp-action="UpdateAdvance" enctype="multipart/form-data" class="">
 
-                            <form asp-controller="Advance" asp-action="UpdateAdvance" enctype="multipart/form-data" class="row g-3">
+                            <div class="col-12">
+                                <label asp-for="AdvanceAmount" class="form-label">Gider Miktarı</label>
+                                <input type="number" asp-for="AdvanceAmount" class="form-control" oninvalid="this.setCustomValidity('Lütfen bir sayı giriniz')" oninput="this.setCustomValidity('')">
+                                <span asp-validation-for="AdvanceAmount" class="text-danger"></span>
+                            </div><br />
+                            <div class="col-12">
+                                <label asp-for="Description" class="form-label">Açıklama</label>
+                                <textarea asp-for="Description" rows="5" cols="50" class="form-control"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div><br />
 
-                                <div class="col-12">
-                                    <label asp-for="AdvanceAmount" class="form-label">Gider Miktarı</label>
-                                    <input type="number" asp-for="AdvanceAmount" class="form-control" oninvalid="this.setCustomValidity('Lütfen bir sayı giriniz')" oninput="this.setCustomValidity('')">
-                                    <span asp-validation-for="AdvanceAmount" class="text-danger"></span>
-                                </div><br />
-                                <div class="col-12">
-                                    <label asp-for="Description" class="form-label">Açıklama</label>
-                                    <textarea asp-for="Description" rows="5" cols="50" class="form-control"></textarea>
-                                    <span asp-validation-for="Description" class="text-danger"></span>
-                                </div><br />
+                            <div class="col-12">
+                                <label asp-for="Currency" class="form-label">Para Birimi</label>
+                                <select asp-for="Currency" class="form-control" asp-items="@Html.GetEnumSelectList<Currency>();"></select>
+                                <span asp-validation-for="Currency" class="text-danger"></span>
+                            </div><br />
 
-                                <div class="col-12">
-                                    <label asp-for="Currency" class="form-label">Para Birimi)</label>
-                                    <select asp-for="Currency" class="form-control" asp-items="@Html.GetEnumSelectList<Currency>();"></select>
-                                    <span asp-validation-for="Currency" class="text-danger"></span>
-                                </div><br />
-
-
-
-                                <div class="col-12">
-                                    <input type="hidden" asp-for="Id" />
-                                    <button type="submit" value="Update" class="btn btn-primary">Düzenle</button>
-                                    <a asp-action="Index" class="btn btn-secondary">Harcama Listesine Dön</a>
-                                </div>
-                            </form>
-                            @section Scripts {
-                                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-                            }
-
-
-
-
-
-                        </div>
+                            <div class="col-12">
+                                <input type="hidden" asp-for="Id" />
+                                <button type="submit" value="Update" class="btn btn-primary">Düzenle</button>
+                                <a asp-action="Index" class="btn btn-link">Harcama Listesine Dön</a>
+                            </div>
+                        </form>
+                        @section Scripts {
+                            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                        }
                     </div>
                 </div>
             </div>

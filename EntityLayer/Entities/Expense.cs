@@ -16,16 +16,13 @@ namespace CoreLayer.Entities
     {
         public int ID { get; set; }
         public bool Status { get; set ; }
-
-       
-        
-      
-        
+        [Display(Name ="Harcama Tutarı")]
         public decimal ExpenseAmount { get; set; }
         
         public string Invoce { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = false)]
+        [Display(Name = "Oluşturulma Tarihi")]
         public DateTime CreationDate { get; set; } = DateTime.Now;
 
         public Approval Approval { get; set; } = Approval.OnayBekliyor;
@@ -33,14 +30,17 @@ namespace CoreLayer.Entities
  
         public Currency Currency { get; set; }
 
-     
+        [Display(Name = "Harcama Türü")]
         public TypeOfExpenses TypeOfExpenses { get; set; }
 
-   
+        [Display(Name = "Açıklama")]
         public string Description { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = false)]
         public DateTime? ApprovalDate { get; set; }
+
+        [Display(Name = "Yönetici Açıklaması")]
+        public string ManagerDescription { get; set; }
 
 
         //Navigation propert

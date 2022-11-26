@@ -31,15 +31,20 @@ namespace CoreLayer.Entities
         //public string Company { get; set; }
         public decimal? Salary { get; set; }
         public Gender Gender { get; set; }
+
         public bool? IsActive { get; set; }
 
         // Nav - Prop
         public int? DepartmentID { get; set; }
         public Department Department { get; set; }
+        public int? CompanyID { get; set; }
+        public Company Company { get; set; }
+        public List<Personnel> Personnels { get; set; }
         public List<Advance> Advances { get; set; }
 
         public List<Expense> Expenses { get; set; }
 
         public List<Permit> Permits { get; set; }
+       
     }
 }

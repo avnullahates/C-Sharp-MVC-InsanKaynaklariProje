@@ -1,0 +1,31 @@
+﻿@using CoreLayer.Entities
+@model Personnel
+
+
+<div class="media-body  ml-2  d-none d-lg-block">
+
+    <div class="row">
+        <div class="col-12">
+            <span class="mb-0 text-sm font-weight-bold ml-auto"> @ViewBag.v </span>
+            <br />
+            @if (User.IsInRole("Personel"))
+            {
+        <span> Personel </span>}
+            @if (User.IsInRole("Manager"))
+            {
+        <span> Yönetici </span>}
+          @if (User.IsInRole("admin"))
+            {
+        <span> Admin </span>}
+        </div>
+    </div>
+   
+</div>
+&nbsp;
+&nbsp;
+<span class="avatar avatar-sm rounded-circle" style="width:40px; height:40px;">
+
+    <img alt="Profil Resmi" src="~/images/@TempData["Invoce"]">
+
+
+</span>

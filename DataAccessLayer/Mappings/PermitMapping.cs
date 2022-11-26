@@ -16,6 +16,8 @@ namespace DataAccessLayer.Mappings
             builder.HasKey(x => x.ID);
             builder.Property(x => x.ID).IsRequired();
 
+            builder.Property(x => x.Description).IsRequired();
+
 
             builder.HasOne(a => a.Personnel).WithMany(a => a.Permits).HasForeignKey(a => a.PersonnelID);
         }

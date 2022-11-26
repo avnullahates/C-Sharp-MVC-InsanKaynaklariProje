@@ -3,144 +3,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-	<meta name="author" content="Creative Tim">
-	<title>İnsan Kaynakları</title>
-	<!-- Favicon -->
-	<link rel="icon" href="~/images/icons8-human-resources-68.png" type="image/png">
-	<!-- Fonts -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-	<!-- Icons -->
-	<link rel="stylesheet" href="~/argon/assets/vendor/nucleo/css/nucleo.css" type="text/css">
-	<link rel="stylesheet" href="~/argon/assets/vendor/@@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
-	<!-- Argon CSS -->
-	<link rel="stylesheet" href="~/argon/assets/css/argon.css?v=1.2.0" type="text/css">
-	<link rel="stylesheet" href="~/argon/assets/css/bootstrap/bootstrap.min.css" type="text/css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+    <meta name="author" content="Creative Tim">
+    <title>İnsan Kaynakları</title>
+    <!-- Favicon -->
+    <link rel="icon" href="~/images/icons8-human-resources-68.png" type="image/png">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <!-- Icons -->
+    <link rel="stylesheet" href="~/argon/assets/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="~/argon/assets/vendor/@@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <!-- Argon CSS -->
+    <link rel="stylesheet" href="~/argon/assets/css/argon.css?v=1.2.0" type="text/css">
+    <link rel="stylesheet" href="~/argon/assets/css/bootstrap/bootstrap.min.css" type="text/css">
 
 </head>
 <body>
-	<nav class="navbar navbar-top navbar-expand navbar-dark bg-default border-bottom">
+    <nav class="navbar navbar-top navbar-expand navbar-dark bg-default border-bottom">
 
-		<div class="ml-2">
+        <div class="ml-2">
 
-			<a asp-controller="Personnel" asp-action="Index"><img src="~/images/icon.png" alt="Alternate Text" /></a>
-		</div>
-		
-		<div class="dropdown ml-5">
-			<button class="btn btn-outline-info dropdown-toggle" style="border-style:none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				AVANS
-			</button>
-			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a asp-controller="Advance" asp-action="Index" class="dropdown-item"><span> Avansları Listele </span></a>
-				<a asp-controller="Advance" asp-action="Add" class="dropdown-item"><span> Avans Ekle </span></a>
-			</div>
+            <a asp-controller="Personnel" asp-action="Index"><img src="~/images/icon.png" alt="Alternate Text" /></a>
+        </div>
+        @if (User.IsInRole("Personel"))
+        {
+<div class="dropdown ml-5">
+    <button class="btn btn-outline-info dropdown-toggle" style="border-style:none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        AVANS
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a asp-controller="Advance" asp-action="Index" class="dropdown-item"><span> Avansları Listele </span></a>
+        <a asp-controller="Advance" asp-action="Add" class="dropdown-item"><span> Avans Ekle </span></a>
+    </div>
 
-		</div>
+</div>
 
-		<div class="dropdown ml-3">
-			<button class="btn btn-outline-info dropdown-toggle" style="border-style:none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				GİDER
-			</button>
-			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a asp-controller="Expense" asp-action="Index" class="dropdown-item"><span> Giderleri Listele </span></a>
-				<a asp-controller="Expense" asp-action="Add" class="dropdown-item"><span> Gider Ekle </span></a>
-			</div>
-		</div>
+                <div class="dropdown ml-3">
+                    <button class="btn btn-outline-info dropdown-toggle" style="border-style:none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        GİDER
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a asp-controller="Expense" asp-action="Index" class="dropdown-item"><span> Giderleri Listele </span></a>
+                        <a asp-controller="Expense" asp-action="Add" class="dropdown-item"><span> Gider Ekle </span></a>
+                    </div>
+                </div>
 
-		<div class="dropdown ml-3">
-			<button class="btn btn-outline-info dropdown-toggle" style="border-style:none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				İZİN
-			</button>
-			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a asp-controller="Permit" asp-action="Index" class="dropdown-item"><span> İzinleri Listele </span></a>
-				<a asp-controller="Permit" asp-action="Add" class="dropdown-item"><span> İzin Ekle </span></a>
-			</div>
-		</div>
+                                <div class="dropdown ml-3">
+                                    <button class="btn btn-outline-info dropdown-toggle" style="border-style:none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        İZİN
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a asp-controller="Permit" asp-action="Index" class="dropdown-item"><span> İzinleri Listele </span></a>
+                                        <a asp-controller="Permit" asp-action="Add" class="dropdown-item"><span> İzin Ekle </span></a>
+                                    </div>
+                                </div>}
+        @if (User.IsInRole("Manager"))
+        {
+<div class="dropdown ml-3">
+    <button class="btn btn-outline-info dropdown-toggle" style="border-style:none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Personel İşlemleri
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a asp-controller="Manager" asp-action="Index" class="dropdown-item"><span> Personelleri Listele </span></a>
+        <a asp-controller="Manager" asp-action="CreatePersonnel" class="dropdown-item"><span> Personel Ekle </span></a>
 
-		<div class="container">
-			<div class="justify-content-center">
-				<h2 class="text-center text-light" style="margin-left:220px;"> EASY HR </h2>
-			</div>
-		</div>
-		@ViewBag.Name
-		<div class="container-fluid">
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<!-- Search form -->
+      
+    </div>
+</div>
+                <div class="dropdown ml-3">
+                    <button class="btn btn-outline-info dropdown-toggle" style="border-style:none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Listeleme İşlemleri
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        
 
-				<ul class="navbar-nav align-items-center ml-auto">
-					<li class="nav-item dropdown">
-						<a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<div class="media align-items-center">
-								<span class="avatar avatar-sm rounded-circle">
-
-
-									<img alt="Profil Resmi" src="~/images/@TempData["Invoce"]">
-
-
-								</span>
-								<div class="media-body  ml-2  d-none d-lg-block">
-									@*<span class="mb-0 text-sm  font-weight-bold"> @Model.Name </span>*@
-								</div>
-							</div>
-						</a>
-						<div class="dropdown-menu  dropdown-menu-right ">
-
-							<a asp-controller="Personnel" asp-action="Details" class="dropdown-item">
-								<i class="ni ni-single-02"></i>
-								<span>Bilgilerim</span>
-							</a>
-							<div class="dropdown-divider"></div>
-							<a asp-controller="Login" asp-action="LogOut" class="dropdown-item">
-								<i class="ni ni-user-run"></i>
-								<span>Çıkış</span>
-							</a>
-						</div>
-					</li>
-				</ul>
-
-				<form class="navbar-search navbar-search-light form-inline ml-4" id="navbar-search-main">
-				</form>
-
-			</div>
-		</div>
-	</nav>
-
-	@RenderBody()
-
-	<div>
-		<main role="main" class="">
-
-		</main>
-		@*<footer class="footer pt-0">
-			<div class="row align-items-center justify-content-lg-between ">
-			<div class="col-lg-6">
-			<div class="copyright text-center  text-lg-left  text-muted">
-			&copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank"></a>
-			</div>
-			</div>
-			</div>
-			</footer>*@
-	</div>
-
-	<footer class="border-top footer text-muted">
-		<div class="container ml-2">
-			&copy; 2022 - Easy HR -
-		</div>
-	</footer>
+                        <a asp-controller="Manager" asp-action="GetListAdvance" class="dropdown-item"><span> Personel Avans Listele </span></a>
+                        <a asp-controller="Manager" asp-action="GetListPermit" class="dropdown-item"><span> Personel İzin Listele </span></a>
+                        <a asp-controller="Manager" asp-action="GetListExpense" class="dropdown-item"><span> Personel Gider Listele </span></a>
+                    </div>
+                </div>
+                }
+        @if (User.IsInRole("admin"))
+        {
+<div class="dropdown ml-3">
+    <button class="btn btn-outline-info dropdown-toggle" style="border-style:none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Yönetici
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a asp-controller="Admin" asp-action="Index" class="dropdown-item"><span> Yöneticileri Listele </span></a>
+    </div>
+</div>
+                <div class="dropdown ml-3">
+                    <button class="btn btn-outline-info dropdown-toggle" style="border-style:none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Şirket
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a asp-controller="Admin" asp-action="ListCompanies" class="dropdown-item"><span> Şirketleri Listele </span></a>
+                        <a asp-controller="Admin" asp-action="AddCompany" class="dropdown-item"><span> Şirket Ekle </span></a>
+                    </div>
+                </div>}
+        @if (User.IsInRole("Personel"))
+        {
+<div class="container" style="margin-left:245px;">
+    <div class="">
+        <h2 class="text-center text-light"> EASY HR </h2>
+    </div>
+</div>}
+        @if (User.IsInRole("Manager"))
+        {
+<div class="container" style="margin-left:115px;">
+    <div class="">
+        <h2 class="text-center text-light"> EASY HR </h2>
+    </div>
+</div>}
+        @ViewBag.Name
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Search form -->
+             
+                <ul class="navbar-nav align-items-center ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="media align-items-center">
 
 
-	<script src="~/lib/jquery/dist/jquery.min.js"></script>
-	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="~/argon/assets/vendor/jquery/dist/jquery.min.js"></script>
-	<script src="~/argon/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="~/argon/assets/vendor/js-cookie/js.cookie.js"></script>
-	<script src="~/argon/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-	<script src="~/argon/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-	<!-- Argon JS -->
-	<script src="~/argon/assets/js/argon.js?v=1.2.0"></script>
-	<script src="~/js/site.js" asp-append-version="true"></script>
-	@await RenderSectionAsync("Scripts", required: false)
+                                @await Component.InvokeAsync("PersonnelInformation")
+
+
+                            </div>
+                        </a>
+                        <div class="dropdown-menu  dropdown-menu-right ">
+
+                            <a asp-controller="Personnel" asp-action="Details" class="dropdown-item">
+                                <i class="ni ni-single-02"></i>
+                                <span>Bilgilerim</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a asp-controller="Login" asp-action="LogOut" class="dropdown-item">
+                                <i class="ni ni-user-run"></i>
+                                <span>Çıkış</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+
+                <form class="navbar-search navbar-search-light form-inline ml-4" id="navbar-search-main">
+                </form>
+
+            </div>
+        </div>
+    </nav>
+
+    @RenderBody()
+
+    <div>
+        <main role="main" class="">
+
+        </main>
+        @*<footer class="footer pt-0">
+            <div class="row align-items-center justify-content-lg-between ">
+            <div class="col-lg-6">
+            <div class="copyright text-center  text-lg-left  text-muted">
+            &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank"></a>
+            </div>
+            </div>
+            </div>
+            </footer>*@
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container ml-2">
+            &copy; 2022 - Easy HR
+        </div>
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/argon/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="~/argon/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/argon/assets/vendor/js-cookie/js.cookie.js"></script>
+    <script src="~/argon/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="~/argon/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+    <!-- Argon JS -->
+    <script src="~/argon/assets/js/argon.js?v=1.2.0"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

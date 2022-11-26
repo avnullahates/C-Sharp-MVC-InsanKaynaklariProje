@@ -38,7 +38,7 @@
                 <div class="card">
                     <!-- Card header -->
                     <div class="card-header border-0">
-                        <h3 class="text-muted mb-2 ml-4">Avans Ekleme Sayfası</h3>
+                        <h3 class="text-muted mb-2 ml-4">Avans Ekleme Sayfası  </h3>
                     </div>
                     <!-- Light table -->
                     <div class="card-body border-0">
@@ -46,9 +46,23 @@
 
                             <div class="pl-lg-4">
                                 <div class="form-group">
+                                    <label class="form-control-label">Şuana kadar yaptığınız Avanslar Toplamı:</label>
+                                    <span asp-validation-for="@Model.Advance.AdvanceAmount" class="text-danger">@ViewBag.sumAdvance</span>
+                                </div>
+                            </div>
+
+                            <div class="pl-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label">Talep edebileceğiniz Avans miktarı:</label>
+                                    <span asp-validation-for="@Model.Advance.AdvanceAmount" class="text-danger">@ViewBag.difAdvance</span>
+                                </div>
+                            </div>
+
+
+                            <div class="pl-lg-4">
+                                <div class="form-group">
                                     <label class="form-control-label" asp-for="@Model.Advance.AdvanceAmount">Avans Miktarı</label>
-                                    <input type="number" asp-for="@Model.Advance.AdvanceAmount" class="form-control" oninvalid="this.setCustomValidity('Lütfen bir sayı giriniz')"
-                                           oninput="this.setCustomValidity('')" />
+                                    <input type="number" asp-for="@Model.Advance.AdvanceAmount" class="form-control" />
                                     <span asp-validation-for="@Model.Advance.AdvanceAmount" class="text-danger"></span>
 
                                 </div>
@@ -86,12 +100,13 @@
             </div>
         </div>
     </div>
+</div>
 
-    <script src="~/argon/assets/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="~/argon/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/argon/assets/vendor/js-cookie/js.cookie.js"></script>
-    <script src="~/argon/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-    <script src="~/argon/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-    <!-- Argon JS -->
-    <script src="~/argon/assets/js/argon.js?v=1.2.0"></script>
+<script src="~/argon/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="~/argon/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/argon/assets/vendor/js-cookie/js.cookie.js"></script>
+<script src="~/argon/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script src="~/argon/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+<!-- Argon JS -->
+<script src="~/argon/assets/js/argon.js?v=1.2.0"></script>
 

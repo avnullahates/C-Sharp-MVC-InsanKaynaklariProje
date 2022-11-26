@@ -133,6 +133,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Files\Invoices\" />
+    <Folder Include="wwwroot\Logo\" />
   </ItemGroup>
 
 </Project>

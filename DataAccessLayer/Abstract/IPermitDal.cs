@@ -10,5 +10,8 @@ namespace DataAccessLayer.Abstract
     public interface IPermitDal : IGENERICDAL<Permit>
     {
         List<Permit> GetListAllPermit(string id);
+        bool Approved(int id);
+        bool Rejected(int id);
+        List<Permit> GetAllPermitWithPersonnel();
     }
 }

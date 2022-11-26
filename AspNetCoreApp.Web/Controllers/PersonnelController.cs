@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 namespace AspNetCoreApp.Web.Controllers
 {
     [Route("EasyHR/[controller]/[action]/Bilgiler")]
+    [Authorize(Roles = "Personel,Manager,admin")]
     public class PersonnelController : Controller
     {
 
@@ -32,11 +33,11 @@ namespace AspNetCoreApp.Web.Controllers
 
         //[Authorize]
         [HttpGet]
-        
+        [Route("Kullanıcı")]
         public async Task<IActionResult> Index(string id)
         {
             Personnel personel = await _userManager.FindByIdAsync(id);
-            TempData["Invoce"] = personel.ImagePath;
+            
             return View(personel);
         }
 
